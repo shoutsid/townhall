@@ -1,0 +1,29 @@
+{
+  "name": "Python 3.8",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": "..",
+    "args": {
+      "VARIANT": "3.8"
+    }
+  },
+  "runArgs": [
+    "-u",
+    "root"
+  ],
+  "forwardPorts": [
+    80
+  ],
+  "postCreateCommand": "pip install -r requirements.txt",
+  "remoteUser": "root",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python"
+      ],
+      "settings": {
+        "terminal.integrated.shell.linux": "/bin/bash"
+      }
+    }
+  }
+}
