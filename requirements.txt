@@ -1,0 +1,8 @@
+setuptools
+pyautogen
+tiktoken
+fschat[model_worker,webui]
+optimum
+auto-gptq
+jinja2
+python-dotenv
