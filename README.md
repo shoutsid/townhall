@@ -15,6 +15,9 @@ Townhall is a Python-based application designed to facilitate interactions using
 - **Setup**: The [setup script](https://github.com/shoutsid/townhall/blob/main/setup.sh) helps in setting up a virtual environment and installing necessary dependencies.
 
 ## Getting Started
+The easiest way to start playing is click below to use the Github Codespace.
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/shoutsid/townhall?quickstart=1)
 
 1. Clone the repository.
 2. Run the [setup script](https://github.com/shoutsid/townhall/blob/main/setup.sh) to set up the virtual environment and install dependencies.
