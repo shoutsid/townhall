@@ -23,3 +23,7 @@ LOCAL_CONFIG_LIST = [
         "api_type": "open_ai",
     }
 ]
+
+# Validate essential environment variables
+if "OPENAI_API_KEY" not in os.environ:
+    raise EnvironmentError("Missing essential environment variable: OPENAI_API_KEY")
