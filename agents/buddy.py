@@ -4,35 +4,23 @@ and initiating a chat between them.
 """
 
 
-import threading
-from autogen import AssistantAgent, UserProxyAgent
+from autogen import AssistantAgent
 from settings import (
     GPT3_5_TURBO_0613,
     CONFIG_LIST,
 )
-
-
-class UserAgent(UserProxyAgent):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.current_message = None
-        self.message_event = threading.Event()
-
-    def set_current_message(self, message: str):
-        """Sets the current message from the user and signals that a message is available."""
-        self.current_message = message
-        self.message_event.set()
-
-    def get_human_input(self, prompt: str) -> str:
-        """Blocks until a message is available, then returns it."""
-        self.message_event.wait()  # Block until a message is available
-        message = self.current_message
-        self.message_event.clear()  # Reset the event for the next message
-        return message
+from .user_agent import UserAgent
 
 
 class Buddy:
-    """A class representing a chatbot for chatting with the assistant."""
+    """
+    A class representing a chatbot for chatting with the assistant.
+
+    Attributes:
+        conversation_context (list): A list of dictionaries representing the conversation context.
+        assistant (AssistantAgent): An instance of the AssistantAgent class.
+        user_proxy (UserAgent): An instance of the UserAgent class.
+    """
 
     def __init__(self):
         self.conversation_context = []
@@ -54,7 +42,15 @@ class Buddy:
         )
 
     def start(self, message: str):
-        """Initiates a chat between the user and the assistant."""
+        """
+        Initiates a chat between the user and the assistant.
+
+        Args:
+            message (str): The message sent by the user.
+
+        Returns:
+            str: The reply sent by the assistant.
+        """
         # Store the user's message to the conversation context
         self.conversation_context.append({"role": "user", "content": message})
 
