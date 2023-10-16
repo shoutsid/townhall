@@ -1,6 +1,6 @@
 # Townhall
 
-Townhall is a Python-based application designed to facilitate interactions using the AssistantAgent and UserProxyAgent classes.
+A Python-based chatbot framework built on the autogen foundation, utilizing advanced agents for dynamic conversations and function orchestration, enhancing and expanding traditional chatbot capabilities.
 
 ## Features
 
