@@ -4,35 +4,28 @@ import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 
 from agents.function_registry import FunctionRegistry
+import pytest
 
 
-def test_add_function():
-    registry = FunctionRegistry()
+class TestFunctionRegistry:
+    def setup_method(self):
+        self.registry = FunctionRegistry()
 
-    def test_func():
-        return "test"
+        def test_func():
+            return "test"
 
-    registry.add_function("test_func", test_func)
-    assert "test_func" in registry.functions
+        self.test_func = test_func
 
+    def test_add_function(self):
+        self.registry.add_function("test_func", self.test_func)
+        assert "test_func" in self.registry.functions
 
-def test_execute_function():
-    registry = FunctionRegistry()
+    def test_execute_function(self):
+        self.registry.add_function("test_func", self.test_func)
+        result = self.registry.execute_function("test_func")
+        assert result == "test"
 
-    def test_func():
-        return "test"
-
-    registry.add_function("test_func", test_func)
-    result = registry.execute_function("test_func")
-    assert result == "test"
-
-
-def test_list_functions():
-    registry = FunctionRegistry()
-
-    def test_func():
-        return "test"
-
-    registry.add_function("test_func", test_func)
-    functions = registry.list_functions()
-    assert "test_func" in functions
+    def test_list_functions(self):
+        self.registry.add_function("test_func", self.test_func)
+        functions = self.registry.list_functions()
+        assert "test_func" in functions

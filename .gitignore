@@ -6,3 +6,5 @@ workspace/
 __pycache__/
 .cache/
 *.db
+.benchmarks/
+.pytest_cache/
