@@ -6,3 +6,5 @@ optimum
 auto-gptq
 jinja2
 python-dotenv
+bcrypt
+pytest

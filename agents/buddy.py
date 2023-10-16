@@ -26,7 +26,7 @@ class Buddy:
     def __init__(self):
         pass
 
-    def start(self):
+    def start(self, message: str):
         """
         Creates an instance of the AssistantAgent class with the specified configuration settings.
         Creates an instance of the UserProxyAgent class with the specified configuration settings.
@@ -51,5 +51,4 @@ class Buddy:
             code_execution_config={"work_dir": "workspace"},
         )
 
-        message = input("Enter a message to send to the assistant: ")
         user_proxy.initiate_chat(assistant, message=message)

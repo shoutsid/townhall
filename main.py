@@ -9,7 +9,8 @@ def main():
     """
     Main function for the townhall application.
     """
-    Buddy().start()
+    message = input("Enter a message to send to the assistant: ")
+    Buddy().start(message)
 
 
 if __name__ == "__main__":
