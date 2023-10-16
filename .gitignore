@@ -5,3 +5,4 @@ workspace/
 *.log
 __pycache__/
 .cache/
+*.db
