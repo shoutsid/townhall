@@ -12,8 +12,9 @@ class AgentManager:
       list_agents: Returns a dictionary of all registered agents and their details.
     """
 
-    def __init__(self):
+    def __init__(self, inter_agent_comm):
         self.registry = {}
+        self.inter_agent_comm = inter_agent_comm
 
     async def register_agent(self, agent_id, details):
         """

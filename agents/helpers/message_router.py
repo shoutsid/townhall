@@ -19,8 +19,9 @@ class MessageRouter:
       Fetches all the messages for the specified agent.
     """
 
-    def __init__(self, agent_manager):
+    def __init__(self, agent_manager, inter_agent_comm):
         self.agent_manager = agent_manager
+        self.inter_agent_comm = inter_agent_comm
 
     async def send_message(self, agent_id, message):
         """

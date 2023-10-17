@@ -8,12 +8,14 @@ sys.path.insert(
 )
 
 from agents.helpers.agent_manager import AgentManager
+from agents.helpers.inter_agent_comm import InterAgentComm
 
 
 @pytest.mark.asyncio
 async def test_agent_management():
     # Initialize AgentManager
-    agent_manager = AgentManager()
+    inter_agent_comm = InterAgentComm()
+    agent_manager = AgentManager(inter_agent_comm=inter_agent_comm)
 
     # Test agent registration
     assert (
