@@ -83,9 +83,18 @@ pytest
 
 ## Roadmap
 
+- Token prediction and compression techniques
 - Implement multi-agent conversations
+- ORM for opensource vector space models
+- Prompt templating for forced choice questions/answers
 - Add support for voice commands
 - Improve UI/UX
+- Interactive chat interface
+  - interactive chatroom with multiple agents
+  - Add support for document embedding
+  - Add support for image embedding
+  - Add support for video embedding
+  - Add support for audio embedding
 
 ## Credits
 
