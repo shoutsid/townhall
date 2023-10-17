@@ -36,7 +36,7 @@ multiprocess==0.70.15
 networkx==3.1
 numpy==1.26.1
 nvidia-cublas-cu12==12.2.5.6
-nvidia-cuda-cupti-cu12==12.1.105
+nvidia-cuda-cupti-cu12==12.2.142
 nvidia-cuda-nvrtc-cu12==12.1.105
 nvidia-cuda-runtime-cu12==12.1.105
 nvidia-cudnn-cu12==8.9.2.26
