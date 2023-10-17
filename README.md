@@ -4,6 +4,20 @@
 
 A Python-based chatbot framework built on the autogen foundation, utilizing advanced agents for dynamic conversations and function orchestration, enhancing and expanding traditional chatbot capabilities.
 
+## Table of Contents
+
+1. [Features](#features)
+2. [Prerequisites](#prerequisites)
+3. [Installation](#installation)
+4. [Usage](#usage)
+5. [Contributing](#contributing)
+6. [Testing](#testing)
+7. [Roadmap](#roadmap)
+8. [Credits](#credits)
+9. [License](#license)
+
+
+
 ## Features
 
 - **Planner**: The [planner](https://github.com/shoutsid/townhall/blob/main/agents/planner.py) module provides functionalities to truncate conversations, initiate chats with the planner, and manage a registry of functions.
@@ -11,23 +25,72 @@ A Python-based chatbot framework built on the autogen foundation, utilizing adva
 - **Buddy**: The [buddy](https://github.com/shoutsid/townhall/blob/main/agents/buddy.py) module represents a chatbot that can initiate a chat between a user and an assistant agent.
 - **Settings**: The [settings](https://github.com/shoutsid/townhall/blob/main/settings.py) module loads environment variables and defines configurations for the application.
 - **Setup**: The [setup script](https://github.com/shoutsid/townhall/blob/main/setup.sh) helps in setting up a virtual environment and installing necessary dependencies.
+- **User Agent**: The [user agent](https://github.com/shoutsid/townhall/blob/main/agents/user_agent.py) represents a user in the system and can send messages to other agents.
+- **Chat Service**: The [chat service](https://github.com/shoutsid/townhall/blob/main/agents/services/chat_service.py) module handles the logic for initiating and managing chats between agents.
+- **Function Service**: The [function service](https://github.com/shoutsid/townhall/blob/main/agents/services/function_service.py) module provides functionalities for executing specific tasks.
+- **Planner Service**: The [planner service](https://github.com/shoutsid/townhall/blob/main/agents/services/planner_service.py) module aids in planning and sequencing tasks for the chatbot.
 
-## Getting Started
+## Prerequisites
+
+Before you begin, ensure you have met the following requirements:
+
+- Python 3.8 or higher
+- pip package manager
+
+## Installation
 
 The easiest way to start playing is click below to use the Github Codespace.
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/shoutsid/townhall?quickstart=1)
 
-1. Clone the repository.
-2. Run the [setup script](https://github.com/shoutsid/townhall/blob/main/setup.sh) to set up the virtual environment and install dependencies.
-3. Update the `.env` file with your `OPENAI_API_KEY` using the provided [.env.example](https://github.com/shoutsid/townhall/blob/main/.env.example) as a reference.
-4. Execute the [main.py](https://github.com/shoutsid/townhall/blob/main/main.py) script to start a conversation via CLI.
-5. (Optional & Under Heavy Development))To start the chat interface, run the command `streamlit run app.py`.
+### For Linux/Mac
 
-## Dependencies
+```bash
+git clone https://github.com/shoutsid/townhall.git
+cd townhall
+pip install -r requirements.txt
+```
 
-The application has several dependencies which can be found in the [requirements.txt](https://github.com/shoutsid/townhall/blob/main/requirements.txt) file.
+### For Windows
 
-## Contribution
+```bash
+git clone https://github.com/shoutsid/townhall.git
+cd townhall
+pip install -r requirements.txt
+```
 
-Feel free to fork the repository, make changes, and create pull requests. Your contributions are always welcome!
+## Usage
+
+To start the chatbot, run the following command:
+
+```bash
+python main.py
+```
+
+For more advanced usage, refer to the [documentation (todo)](#).
+
+## Contributing
+
+If you would like to contribute to Townhall, please fork the repository and use a feature branch. Pull requests are warmly welcome.
+
+## Testing
+
+To run the tests:
+
+```bash
+pytest
+```
+
+## Roadmap
+
+- Implement multi-agent conversations
+- Add support for voice commands
+- Improve UI/UX
+
+## Credits
+
+Developed by @shoutsid.
+
+## License
+
+This project is licensed under the GNU GENERAL PUBLIC LICENSE . See the [LICENSE.md](LICENSE.md) file for details.
