@@ -19,12 +19,44 @@ class PlannerService:
     """
 
     def __init__(self, config_list):
+        self.config_list = config_list
         self.planner = AssistantAgent(
             name="planner", llm_config={"config_list": config_list}
         )
         self.planner_user = UserProxyAgent(
             name="planner_user", max_consecutive_auto_reply=0, human_input_mode="NEVER"
         )
+
+    def get_service(self, name):
+        """
+        Returns the service associated with the given name, or None if no such service exists.
+
+        Args:
+          name (str): The name of the service to retrieve.
+
+        Returns:
+          The service associated with the given name, or None if no such service exists.
+        """
+        for config in self.config_list:
+            if config["name"] == name:
+                return config["service"]
+        return None
+
+    def get_parameters(self, name):
+        """
+        Returns the parameters for a given configuration name.
+
+        Args:
+          name (str): The name of the configuration to retrieve parameters for.
+
+        Returns:
+          dict: A dictionary containing the parameters for the configuration, or None if the configuration
+              with the given name does not exist.
+        """
+        for config in self.config_list:
+            if config["name"] == name:
+                return config["parameters"]
+            return None
 
     def ask_planner(self, msg):
         """

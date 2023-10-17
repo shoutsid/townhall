@@ -1,24 +1,49 @@
-import pytest
-from unittest.mock import patch, MagicMock
 import sys
 import os
+import pytest
+from unittest.mock import patch
 
 sys.path.insert(
-    0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
+    0,
+    os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")),
 )
 
 from agents.services.planner_service import PlannerService
 
 
-@pytest.mark.parametrize(
-    "msg, expected", [("Hello", "Hello, Planner!"), ("Test", "Test message!")]
-)
-def test_ask_planner(msg, expected):
-    with patch("agents.services.planner_service.AssistantAgent") as MockedAgent, patch(
-        "agents.services.planner_service.UserProxyAgent"
-    ) as MockedProxy:
-        mocked_last_message = MagicMock()
-        mocked_last_message.return_value = {"content": expected}
-        MockedProxy.return_value.last_message = mocked_last_message
-        service = PlannerService("some_config")
-        assert service.ask_planner(msg) == expected
+@pytest.fixture(scope="function")
+def planner_service_with_mocked_chat():
+    with patch(
+        "agents.services.planner_service.UserProxyAgent.initiate_chat"
+    ) as MockedInitiateChat:
+        MockedInitiateChat.return_value = (
+            None  # No return value as we're mocking the method
+        )
+        yield PlannerService(
+            [
+                {
+                    "name": "test_service",
+                    "service": "TestService",
+                    "parameters": {"param1": "value1"},
+                }
+            ]
+        )
+
+
+def test_get_service(planner_service_with_mocked_chat):
+    assert planner_service_with_mocked_chat.get_service("test_service") == "TestService"
+
+
+def test_get_parameters(planner_service_with_mocked_chat):
+    assert planner_service_with_mocked_chat.get_parameters("test_service") == {
+        "param1": "value1"
+    }
+
+
+def test_ask_planner(planner_service_with_mocked_chat):
+    with patch(
+        "agents.services.planner_service.UserProxyAgent.last_message"
+    ) as MockedLastMessage:
+        MockedLastMessage.return_value = {"content": "Test response from planner"}
+        response = planner_service_with_mocked_chat.ask_planner("buy groceries")
+        assert response == "Test response from planner"
