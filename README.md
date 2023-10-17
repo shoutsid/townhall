@@ -21,8 +21,8 @@ The easiest way to start playing is click below to use the Github Codespace.
 1. Clone the repository.
 2. Run the [setup script](https://github.com/shoutsid/townhall/blob/main/setup.sh) to set up the virtual environment and install dependencies.
 3. Update the `.env` file with your `OPENAI_API_KEY` using the provided [.env.example](https://github.com/shoutsid/townhall/blob/main/.env.example) as a reference.
-4. To start the chat interface, run the command `streamlit run app.py`.
-5. (Optional) Execute the [main.py](https://github.com/shoutsid/townhall/blob/main/main.py) script to start a conversation via CLI.
+4. Execute the [main.py](https://github.com/shoutsid/townhall/blob/main/main.py) script to start a conversation via CLI.
+5. (Optional & Under Heavy Development))To start the chat interface, run the command `streamlit run app.py`.
 
 ## Dependencies
 
