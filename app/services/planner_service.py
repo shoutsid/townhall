@@ -12,9 +12,7 @@ class PlannerService:
 
     def __init__(self, config_list):
         self.config_list = config_list
-        self.planner = AssistantAgent(
-            name="planner", llm_config={"config_list": config_list}
-        )
+        self.planner = AssistantAgent(name="planner")
         self.planner_user = UserProxyAgent(
             name="planner_user", max_consecutive_auto_reply=0, human_input_mode="NEVER"
         )
