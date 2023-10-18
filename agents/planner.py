@@ -13,7 +13,8 @@ from agents.services.chat_service import ChatService
 if __name__ == "__main__":
     planner_service = PlannerService(CONFIG_LIST)
     function_service = FunctionService()
-    chat_service = ChatService(CONFIG_LIST, function_service.registry.functions)
+    chat_service = ChatService(
+        CONFIG_LIST, function_service.registry.functions)
 
     message = input("Enter a message to send to the assistant: ")
     chat_service.initiate_chat(message)
