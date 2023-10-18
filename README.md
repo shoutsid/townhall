@@ -19,17 +19,11 @@ Townhall is a cutting-edge chatbot framework crafted in Python and grounded on t
 ### The Autogen Foundation: The Bedrock of Innovation
 At its core, Townhall is built upon the Autogen framework, a pioneering platform for LLMs. Autogen enables the creation of agents that are not only customizable but also conversational. These agents can interact with each other, and seamlessly incorporate human inputs, setting the stage for more dynamic and intelligent dialogues.
 
-### Advanced Agents: The Symphony Conductors
+### Advanced Agents: The Symphony Conductors with Function Orchestration
 Our advanced agents go beyond merely responding to user queries; they orchestrate multiple functions to provide a cohesive and engaging user experience. Think of them as the conductors of a grand symphony, where each instrument is a unique function or feature. They coordinate these functions to create a harmonious and effective dialogue, far outclassing traditional chatbots which often feel like disjointed sets of scripted responses.
+The advanced agents adapt and learn, making each conversation better than the last. They can switch between various modes, employing a blend of LLMs, human inputs, and specialized tools to deliver a personalized conversational experience.
 
-### Dynamic Conversations: The Art of Intelligent Dialog
-Townhall revolutionizes the concept of a chatbot conversation. Here, dialogues are not just linear exchanges but dynamically evolving interactions. The advanced agents adapt and learn, making each conversation better than the last. They can switch between various modes, employing a blend of LLMs, human inputs, and specialized tools to deliver a personalized conversational experience.
-
-### Function Orchestration: A New Paradigm
 In traditional chatbots, functions are often isolated, activated only by specific commands. Townhall changes this by introducing function orchestration. Functions can now work in tandem, sharing data and context to provide a more comprehensive solution to the user’s needs. This not only enhances the chatbot's utility but also makes the interaction more natural and intuitive.
-
-### Expanding Capabilities: The Road Ahead
-Townhall is constantly evolving, with an active community and a strong development roadmap. Our goal is to continuously expand and enhance what chatbots can do, opening new doors in customer service, personal assistance, data analytics, and much more.
 
 Join us on this exciting journey as we redefine what chatbots can achieve, making them more responsive, intelligent, and, most importantly, more human.
 
