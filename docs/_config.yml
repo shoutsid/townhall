@@ -1,0 +1,7 @@
+# Jekyll configuration file
+
+# GitHub Pages settings
+repository: shoutsid/townhall
+theme: minima
+plugins:
+  - jekyll-feed
