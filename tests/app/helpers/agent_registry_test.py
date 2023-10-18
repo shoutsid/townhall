@@ -1,12 +1,5 @@
-import sys
-import os
+from app.helpers.agent_registry import AgentRegistry
 import pytest
-
-sys.path.insert(
-    0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
-)
-
-from agents.helpers.agent_registry import AgentRegistry
 
 
 @pytest.mark.asyncio
