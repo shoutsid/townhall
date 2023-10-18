@@ -1,0 +1,14 @@
+engines:
+  pylint:
+    python_version: 3
+
+exclude_paths:
+  - ".venv/**"
+  - ".pytest_cache/**"
+  - ".devcontainer/**"
+  - ".vscode/**"
+  - "tests/**"
+  - "build/**"
+  - "dist/**"
+  - "docs/**"
+  - "townhall.egg-info/**"
