@@ -103,7 +103,14 @@ For the detailed roadmap of upcoming features, please visit our [Project Board](
 
 ## 👏 Credits
 
+- **Prompt Contributions**: A big thank you to [Josh-XT](https://github.com/Josh-XT) for the various prompts. Check out his repository [AGiXT](https://github.com/Josh-XT/AGiXT) for more details.
+
+- **Autogen Foundation**: Townhall is built upon the robust [Autogen Framework](https://github.com/microsoft/autogen/), a pioneering platform for LLMs by Microsoft.
+
+- **OpenAI Assistant**: Special mention to [OpenAI Assistant](https://chat.openai.com/) for aiding in the development process.
+
 Developed by @shoutsid.
+
 
 ## 📜 License
 
