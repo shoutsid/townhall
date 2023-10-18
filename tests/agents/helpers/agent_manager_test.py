@@ -1,14 +1,7 @@
-from agents.helpers.inter_agent_comm import InterAgentComm
-from agents.helpers.agent_manager import AgentManager
-import sys
-import os
 import pytest
 
-
-sys.path.insert(
-    0, os.path.abspath(os.path.join(
-        os.path.dirname(__file__), "..", "..", ".."))
-)
+from app.helpers.inter_agent_comm import InterAgentComm
+from agents.helpers.agent_manager import AgentManager
 
 
 @pytest.mark.asyncio

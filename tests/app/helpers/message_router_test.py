@@ -1,6 +1,6 @@
 from app.helpers.message_router import MessageRouter
 from agents.helpers.agent_manager import AgentManager
-from agents.helpers.inter_agent_comm import InterAgentComm
+from app.helpers.inter_agent_comm import InterAgentComm
 import pytest
 
 
