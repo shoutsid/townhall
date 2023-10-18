@@ -9,7 +9,7 @@ from settings import (
     GPT3_5_TURBO_0613,
     CONFIG_LIST,
 )
-from .user_agent import UserAgent
+from app.agents.user_agent import UserAgent
 
 
 class Buddy:
@@ -63,10 +63,12 @@ class Buddy:
                 message=message, recipient=self.assistant, request_reply=True
             )
         else:
-            self.user_proxy.initiate_chat(recipient=self.assistant, message=message)
+            self.user_proxy.initiate_chat(
+                recipient=self.assistant, message=message)
 
         # Store the assistant's reply to the conversation context
         reply = self.user_proxy.last_message()["content"]
-        self.conversation_context.append({"role": "assistant", "content": reply})
+        self.conversation_context.append(
+            {"role": "assistant", "content": reply})
 
         return reply

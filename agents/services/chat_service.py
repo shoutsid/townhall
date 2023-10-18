@@ -1,15 +1,5 @@
-# agents/services/chat_service.py
-
-import sys
-import os
-
-sys.path.insert(
-    0,
-    os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")),
-)
-
+from app.agents.user_agent import UserAgent
 from autogen import AssistantAgent
-from agents.user_agent import UserAgent
 
 
 class ChatService:
@@ -25,7 +15,8 @@ class ChatService:
         if assistant is None:
             self.assistant = AssistantAgent(
                 name="assistant",
-                llm_config={"config_list": config_list, "functions": function_map},
+                llm_config={"config_list": config_list,
+                            "functions": function_map},
             )
         else:
             self.assistant = assistant
