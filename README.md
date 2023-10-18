@@ -2,7 +2,7 @@
 
 # Townhall
 
-Under heavy development and in transition from a previous personal project. Not ready for production use.
+🚧 Under heavy development and in transition from a previous personal project. Not ready for production use. 🚧
 
 [![GitHub contributors](https://img.shields.io/github/contributors/shoutsid/townhall.svg)]()
 [![GitHub issues](https://img.shields.io/github/issues/shoutsid/townhall.svg)]()
@@ -14,19 +14,14 @@ Under heavy development and in transition from a previous personal project. Not 
 [![GitHub license](https://img.shields.io/github/license/shoutsid/townhall.svg)]()
 [![Security: bandit](https://img.shields.io/badge/security-bandit-yellow.svg)](https://github.com/PyCQA/bandit)
 
-Townhall is a cutting-edge chatbot framework crafted in Python and grounded on the robust Autogen foundation. This isn't just another chatbot; Townhall leverages the power of advanced agents to breathe life into conversations and elevate them to a whole new level. 
+Townhall is a cutting-edge chatbot framework crafted in Python and grounded on the robust Autogen foundation. This isn't just another chatbot; Townhall leverages the power of advanced agents to breathe life into conversations and elevate them to a whole new level.
 
-### The Autogen Foundation: The Bedrock of Innovation
+### 🧱 The Autogen Foundation: The Bedrock of Innovation
 At its core, Townhall is built upon the Autogen framework, a pioneering platform for LLMs. Autogen enables the creation of agents that are not only customizable but also conversational. These agents can interact with each other, and seamlessly incorporate human inputs, setting the stage for more dynamic and intelligent dialogues.
 
-### Advanced Agents: The Symphony Conductors with Function Orchestration
+### 🎼 Advanced Agents: The Symphony Conductors with Function Orchestration
 Our advanced agents go beyond merely responding to user queries; they orchestrate multiple functions to provide a cohesive and engaging user experience. Think of them as the conductors of a grand symphony, where each instrument is a unique function or feature. They coordinate these functions to create a harmonious and effective dialogue, far outclassing traditional chatbots which often feel like disjointed sets of scripted responses.
 The advanced agents adapt and learn, making each conversation better than the last. They can switch between various modes, employing a blend of LLMs, human inputs, and specialized tools to deliver a personalized conversational experience.
-
-In traditional chatbots, functions are often isolated, activated only by specific commands. Townhall changes this by introducing function orchestration. Functions can now work in tandem, sharing data and context to provide a more comprehensive solution to the user’s needs. This not only enhances the chatbot's utility but also makes the interaction more natural and intuitive.
-
-Join us on this exciting journey as we redefine what chatbots can achieve, making them more responsive, intelligent, and, most importantly, more human.
-
 
 ## Table of Contents
 
@@ -40,9 +35,7 @@ Join us on this exciting journey as we redefine what chatbots can achieve, makin
 8. [Credits](#credits)
 9. [License](#license)
 
-
-
-## Features
+## 🌟 Features
 
 - **Planner**: The [planner](https://github.com/shoutsid/townhall/blob/main/app/agents/planner.py) initiate chats with the planner, and manage a registry of functions.
 - **Function Registry**: The [function registry](https://github.com/shoutsid/townhall/blob/main/app/helpers/function_registry.py) module manages a registry of functions, allowing users to add, execute, and list functions.
@@ -53,15 +46,14 @@ Join us on this exciting journey as we redefine what chatbots can achieve, makin
 - **Function Service**: The [function service](https://github.com/shoutsid/townhall/blob/main/app/services/function_service.py) module provides functionalities for executing specific tasks.
 - **Planner Service**: The [planner service](https://github.com/shoutsid/townhall/blob/main/app/services/planner_service.py) module aids in planning and sequencing tasks for the chatbot.
 
-
-## Prerequisites
+## 📝 Prerequisites
 
 Before you begin, ensure you have met the following requirements:
 
 - Python 3.8 or higher
 - pip package manager
 
-## Installation
+## 🛠️ Installation
 
 The easiest way to start playing is click below to use the Github Codespace.
 
@@ -83,7 +75,7 @@ cd townhall
 pip install -r requirements.txt
 ```
 
-## Usage
+## 🌐 Usage
 
 To start the chatbot, run the following command:
 
@@ -93,11 +85,11 @@ python main.py
 
 For more advanced usage, refer to the [documentation (todo)](#).
 
-## Contributing
+## 🤝 Contributing
 
 If you would like to contribute to Townhall, please fork the repository and use a feature branch. Pull requests are warmly welcome.
 
-## Testing
+## 🧪 Testing
 
 To run the tests:
 
@@ -105,25 +97,14 @@ To run the tests:
 pytest
 ```
 
-## Roadmap
+## 🗺️ Roadmap
 
-- Token prediction and compression techniques
-- Implement multi-agent conversations
-- ORM for opensource vector space models
-- Prompt templating for forced choice questions/answers
-- Add support for voice commands
-- Improve UI/UX
-- Interactive chat interface
-  - interactive chatroom with multiple agents
-  - Add support for document embedding
-  - Add support for image embedding
-  - Add support for video embedding
-  - Add support for audio embedding
+For the detailed roadmap of upcoming features, please visit our [Project Board](https://github.com/users/shoutsid/projects/1).
 
-## Credits
+## 👏 Credits
 
 Developed by @shoutsid.
 
-## License
+## 📜 License
 
 This project is licensed under the GNU GENERAL PUBLIC LICENSE . See the [LICENSE.md](LICENSE.md) file for details.
