@@ -46,7 +46,7 @@ nvidia-cusolver-cu12==11.5.2.141
 nvidia-cusparse-cu12==12.1.0.106
 nvidia-nccl-cu12==2.18.3
 nvidia-nvjitlink-cu12==12.2.140
-nvidia-nvtx-cu12==12.1.105
+nvidia-nvtx-cu12==12.2.140
 openai==0.28.1
 packaging==23.2
 pandas==2.1.1
