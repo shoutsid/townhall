@@ -2,6 +2,17 @@
 
 # Townhall
 
+Under heavy development and in transition from a previous personal project. Not ready for production use.
+
+[![GitHub contributors](https://img.shields.io/github/contributors/shoutsid/townhall.svg)]()
+[![GitHub issues](https://img.shields.io/github/issues/shoutsid/townhall.svg)]()
+[![GitHub pull requests](https://img.shields.io/github/issues-pr/shoutsid/townhall.svg)]()
+[![GitHub forks](https://img.shields.io/github/forks/shoutsid/townhall.svg?style=social&label=Fork)]()
+[![GitHub stars](https://img.shields.io/github/stars/shoutsid/townhall.svg?style=social&label=Stars)]()
+[![GitHub watchers](https://img.shields.io/github/watchers/shoutsid/townhall.svg?style=social&label=Watch)]()
+[![GitHub followers](https://img.shields.io/github/followers/shoutsid.svg?style=social&label=Follow)]()
+[![GitHub license](https://img.shields.io/github/license/shoutsid/townhall.svg)]()
+
 A Python-based chatbot framework built on the autogen foundation, utilizing advanced agents for dynamic conversations and function orchestration, enhancing and expanding traditional chatbot capabilities.
 
 ## Table of Contents
@@ -20,7 +31,7 @@ A Python-based chatbot framework built on the autogen foundation, utilizing adva
 
 ## Features
 
-- **Planner**: The [planner](https://github.com/shoutsid/townhall/blob/main/agents/planner.py) module provides functionalities to truncate conversations, initiate chats with the planner, and manage a registry of functions.
+- **Planner**: The [planner](https://github.com/shoutsid/townhall/blob/main/agents/planner.py) initiate chats with the planner, and manage a registry of functions.
 - **Function Registry**: The [function registry](https://github.com/shoutsid/townhall/blob/main/agents/function_registry.py) module manages a registry of functions, allowing users to add, execute, and list functions.
 - **Buddy**: The [buddy](https://github.com/shoutsid/townhall/blob/main/agents/buddy.py) module represents a chatbot that can initiate a chat between a user and an assistant agent.
 - **Settings**: The [settings](https://github.com/shoutsid/townhall/blob/main/settings.py) module loads environment variables and defines configurations for the application.
