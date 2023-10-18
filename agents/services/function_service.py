@@ -52,7 +52,7 @@ class FunctionService:
             func_def.name = name.split("(")[0].strip()
             code_obj = compile(ast_obj, "<string>", "exec")
             # pylint: disable-next=exec-used
-            exec(code_obj, None, local_scope)
+            exec(code_obj, None, local_scope)  # bandit: ignore:B102
         except SyntaxError as e:
             raise SyntaxError(f"Invalid syntax in function body: {e}") from e
         new_func = local_scope[func_def.name]
