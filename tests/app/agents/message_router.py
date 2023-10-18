@@ -1,15 +1,20 @@
 from app.helpers.message_router import MessageRouter
 from app.helpers.agent_manager import AgentManager
-from app.helpers.inter_agent_comm import InterAgentComm
+import os
+import sys
 import pytest
+
+sys.path.insert(
+    0, os.path.abspath(os.path.join(
+        os.path.dirname(__file__), "..", "..", ".."))
+)
 
 
 @pytest.mark.asyncio
 async def test_message_routing():
-    # Initialize InterAgentComm, AgentManager and MessageRouter
-    inter_agent_comm = InterAgentComm()
-    agent_manager = AgentManager(inter_agent_comm)
-    message_router = MessageRouter(agent_manager, inter_agent_comm)
+    # Initialize AgentManager and MessageRouter
+    agent_manager = AgentManager()
+    message_router = MessageRouter(agent_manager)
 
     # Register an agent for testing
     await agent_manager.register_agent(

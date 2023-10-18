@@ -1,7 +1,7 @@
 import pytest
 
 from app.helpers.inter_agent_comm import InterAgentComm
-from agents.helpers.agent_manager import AgentManager
+from app.helpers.agent_manager import AgentManager
 
 
 @pytest.mark.asyncio
