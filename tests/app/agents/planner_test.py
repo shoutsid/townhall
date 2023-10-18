@@ -1,5 +1,3 @@
-# ./tests/agents/planner_test.py
-
 import pytest
 from unittest.mock import patch
 from agents.services.planner_service import PlannerService
@@ -22,7 +20,8 @@ def planner_service():
 @patch("agents.services.planner_service.UserProxyAgent.last_message")
 def test_ask_planner(mocked_last_message, mocked_initiate_chat, planner_service):
     # Mock the last_message() method to return a dict with 'content' key
-    mocked_last_message.return_value = {"content": "Go to the store and buy groceries"}
+    mocked_last_message.return_value = {
+        "content": "Go to the store and buy groceries"}
 
     response = planner_service.ask_planner("buy groceries")
 
