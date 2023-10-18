@@ -6,9 +6,9 @@ from settings import (
     CONFIG_LIST,
 )
 
-from agents.services.planner_service import PlannerService
-from agents.services.function_service import FunctionService
-from agents.services.chat_service import ChatService
+from app.services.planner_service import PlannerService
+from app.services.function_service import FunctionService
+from app.services.chat_service import ChatService
 
 if __name__ == "__main__":
     planner_service = PlannerService(CONFIG_LIST)

@@ -1,6 +1,6 @@
 import pytest
 from unittest.mock import patch
-from agents.services.planner_service import PlannerService
+from app.services.planner_service import PlannerService
 
 
 @pytest.fixture
@@ -16,8 +16,8 @@ def planner_service():
     return service
 
 
-@patch("agents.services.planner_service.UserProxyAgent.initiate_chat")
-@patch("agents.services.planner_service.UserProxyAgent.last_message")
+@patch("app.services.planner_service.UserProxyAgent.initiate_chat")
+@patch("app.services.planner_service.UserProxyAgent.last_message")
 def test_ask_planner(mocked_last_message, mocked_initiate_chat, planner_service):
     # Mock the last_message() method to return a dict with 'content' key
     mocked_last_message.return_value = {
@@ -32,8 +32,8 @@ def test_ask_planner(mocked_last_message, mocked_initiate_chat, planner_service)
     assert response == "Go to the store and buy groceries"
 
 
-@patch("agents.services.planner_service.UserProxyAgent.initiate_chat")
-@patch("agents.services.planner_service.UserProxyAgent.last_message")
+@patch("app.services.planner_service.UserProxyAgent.initiate_chat")
+@patch("app.services.planner_service.UserProxyAgent.last_message")
 def test_ask_planner_invalid_input(
     mocked_last_message, mocked_initiate_chat, planner_service
 ):

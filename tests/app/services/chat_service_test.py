@@ -1,6 +1,6 @@
 from unittest.mock import patch
 import pytest
-from agents.services.chat_service import ChatService
+from app.services.chat_service import ChatService
 
 
 @patch("autogen.oai.ChatCompletion.create")
