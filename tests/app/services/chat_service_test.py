@@ -1,6 +1,6 @@
 from unittest.mock import patch
 import pytest
-from agents.services.chat_service import ChatService
+from app.services.chat_service import ChatService
 
 
 @patch("autogen.oai.ChatCompletion.create")
@@ -10,7 +10,7 @@ def test_initiate_chat(mocked_wait, mocked_create):
     mocked_wait.return_value = None
 
     with patch("autogen.AssistantAgent") as MockedAssistant, patch(
-        "agents.user_agent.UserAgent"
+        "app.agents.user_agent.UserAgent"
     ) as MockedProxy:
         service = ChatService(
             "some_config", {}, MockedAssistant.return_value, MockedProxy.return_value

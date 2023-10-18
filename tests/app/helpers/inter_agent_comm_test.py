@@ -1,12 +1,5 @@
-import sys
-import os
-
-sys.path.insert(
-    0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
-)
-
 import pytest
-from inter_agent_comm import InterAgentComm
+from app.helpers.inter_agent_comm import InterAgentComm
 
 
 @pytest.mark.asyncio

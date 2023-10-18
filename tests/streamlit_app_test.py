@@ -6,7 +6,7 @@ from unittest.mock import patch, Mock
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from streamlit_app import main
-from agents.buddy import Buddy
+from app.agents.buddy import Buddy
 
 
 class DynamicMock(Mock):

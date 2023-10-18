@@ -1,5 +1,5 @@
 import ast
-from agents.helpers.function_registry import FunctionRegistry
+from app.helpers.function_registry import FunctionRegistry
 
 
 class FunctionService:

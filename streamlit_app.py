@@ -1,7 +1,6 @@
 import streamlit as st
-import sqlite3
 import pandas as pd
-from agents.buddy import Buddy
+from app.agents.buddy import Buddy
 
 
 def main():
@@ -23,7 +22,8 @@ def main():
         st.subheader("Agent Interaction")
 
         # Agent selection
-        agent_selection = st.selectbox("Choose an agent:", ["Buddy", "Planner"])
+        agent_selection = st.selectbox(
+            "Choose an agent:", ["Buddy", "Planner"])
 
         # Message input and interaction with the selected agent
         user_input = st.text_input(
@@ -32,7 +32,8 @@ def main():
 
         if st.button("Send"):
             if agent_selection == "Buddy":
-                st.session_state.response = st.session_state.buddy.start(user_input)
+                st.session_state.response = st.session_state.buddy.start(
+                    user_input)
             elif agent_selection == "Planner":
                 st.session_state.response = (
                     "Planner agent interaction not yet implemented."

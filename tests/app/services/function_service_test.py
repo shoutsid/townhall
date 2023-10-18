@@ -1,5 +1,5 @@
 import pytest
-from agents.services.function_service import FunctionService
+from app.services.function_service import FunctionService
 
 
 @pytest.fixture
