@@ -1,20 +1,9 @@
 # Jekyll Project for Townhall
 
+![Townhall Banner](banner.png)
+
 This is the Jekyll project set up to create a GitHub Pages site for the Townhall project.
-
-## Original Townhall Project
-
-![Townhall Banner](docs/banner.png)
-
-# Townhall
-
 Under heavy development and in transition from a previous personal project. Not ready for production use.
-
-[![GitHub contributors](https://img.shields.io/github/contributors/shoutsid/townhall.svg)]()
-[![GitHub issues](https://img.shields.io/github/issues/shoutsid/townhall.svg)]()
-[![GitHub pull requests](https://img.shields.io/github/issues-pr/shoutsid/townhall.svg)]()
-[![GitHub forks](https://img.shields.io/github/forks/shoutsid/townhall.svg?styl  <!-- Truncated content from the original README.md -->
-
 For the full README of the original project, please refer to the main [README.md](../README.md) in the repository root.
 
 ## Jekyll Site Structure
