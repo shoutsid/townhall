@@ -8,3 +8,6 @@ __pycache__/
 *.db
 .benchmarks/
 .pytest_cache/
+build/
+dist/
+townhall.egg-info/
