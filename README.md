@@ -32,15 +32,15 @@ A Python-based chatbot framework built on the autogen foundation, utilizing adva
 
 ## Features
 
-- **Planner**: The [planner](https://github.com/shoutsid/townhall/blob/main/agents/planner.py) initiate chats with the planner, and manage a registry of functions.
-- **Function Registry**: The [function registry](https://github.com/shoutsid/townhall/blob/main/agents/function_registry.py) module manages a registry of functions, allowing users to add, execute, and list functions.
-- **Buddy**: The [buddy](https://github.com/shoutsid/townhall/blob/main/agents/buddy.py) module represents a chatbot that can initiate a chat between a user and an assistant agent.
-- **Settings**: The [settings](https://github.com/shoutsid/townhall/blob/main/settings.py) module loads environment variables and defines configurations for the application.
-- **Setup**: The [setup script](https://github.com/shoutsid/townhall/blob/main/setup.sh) helps in setting up a virtual environment and installing necessary dependencies.
-- **User Agent**: The [user agent](https://github.com/shoutsid/townhall/blob/main/agents/user_agent.py) represents a user in the system and can send messages to other agents.
-- **Chat Service**: The [chat service](https://github.com/shoutsid/townhall/blob/main/agents/services/chat_service.py) module handles the logic for initiating and managing chats between agents.
-- **Function Service**: The [function service](https://github.com/shoutsid/townhall/blob/main/agents/services/function_service.py) module provides functionalities for executing specific tasks.
-- **Planner Service**: The [planner service](https://github.com/shoutsid/townhall/blob/main/agents/services/planner_service.py) module aids in planning and sequencing tasks for the chatbot.
+- **Planner**: The [planner](https://github.com/shoutsid/townhall/blob/main/app/agents/planner.py) initiate chats with the planner, and manage a registry of functions.
+- **Function Registry**: The [function registry](https://github.com/shoutsid/townhall/blob/main/app/helpers/function_registry.py) module manages a registry of functions, allowing users to add, execute, and list functions.
+- **Buddy**: The [buddy](https://github.com/shoutsid/townhall/blob/main/app/agents/buddy.py) module represents a chatbot that can initiate a chat between a user and an assistant agent.
+- **Settings**: The [settings](https://github.com/shoutsid/townhall/blob/main/app/settings.py) module loads environment variables and defines configurations for the application.
+- **User Agent**: The [user agent](https://github.com/shoutsid/townhall/blob/main/app/agents/user_agent.py) represents a user in the system and can send messages to other agents.
+- **Chat Service**: The [chat service](https://github.com/shoutsid/townhall/blob/main/app/services/chat_service.py) module handles the logic for initiating and managing chats between agents.
+- **Function Service**: The [function service](https://github.com/shoutsid/townhall/blob/main/app/services/function_service.py) module provides functionalities for executing specific tasks.
+- **Planner Service**: The [planner service](https://github.com/shoutsid/townhall/blob/main/app/services/planner_service.py) module aids in planning and sequencing tasks for the chatbot.
+
 
 ## Prerequisites
 
