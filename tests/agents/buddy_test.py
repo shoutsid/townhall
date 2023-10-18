@@ -2,14 +2,14 @@
 This module contains unit tests for the Buddy class.
 """
 
+from agents.buddy import Buddy, UserAgent, AssistantAgent
+from unittest.mock import Mock, patch
 import os
 import sys
 import unittest
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
-
-from unittest.mock import Mock, patch
-from agents.buddy import Buddy, UserAgent, AssistantAgent
+sys.path.insert(0, os.path.abspath(
+    os.path.join(os.path.dirname(__file__), "..", "..")))
 
 
 class TestBuddy(unittest.TestCase):

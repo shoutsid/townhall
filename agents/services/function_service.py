@@ -1,11 +1,4 @@
-import sys
-import os
-
-sys.path.insert(
-    0,
-    os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")),
-)
-
+import ast
 from agents.helpers.function_registry import FunctionRegistry
 
 
@@ -14,7 +7,20 @@ class FunctionService:
     A service for adding and executing functions dynamically.
 
     Attributes:
-    registry (FunctionRegistry): A registry for storing added functions.
+        registry (FunctionRegistry): A registry for storing added functions.
+
+    Methods:
+        add_function(name: str, function_body: str) -> str:
+            Adds a new function to the registry.
+
+        execute_function(name: str, *args, **kwargs) -> Any:
+            Executes a function from the registry.
+
+        add_multiple_functions(functions: dict) -> str:
+            Adds multiple functions to the registry.
+
+        execute_multiple_functions(function_calls: list) -> str:
+            Executes multiple functions from the registry.
     """
 
     def __init__(self):
@@ -25,28 +31,31 @@ class FunctionService:
         Adds a new function to the registry.
 
         Args:
-          name (str): The name of the function.
-          function_body (str): The body of the function.
+            name (str): The name of the function.
+            function_body (str): The body of the function.
 
         Returns:
-          str: A message indicating the function was added successfully.
+            str: A message indicating the function was added successfully.
 
         Raises:
-          SyntaxError: If the function_body contains invalid syntax.
+            SyntaxError: If the function_body contains invalid syntax.
 
         Example:
-          >>> function_service.add_function("my_function(x, y)", "return x + y")
-          "Function 'my_function(x, y)' added!"
+            >>> function_service.add_function("my_function(x, y)", "return x + y")
+            "Function 'my_function(x, y)' added!"
         """
         local_scope = {}
         try:
-            compiled_func = compile(function_body, "<string>", "exec")
-            exec(compiled_func, None, local_scope)
+            ast_obj = ast.parse(function_body)
+            func_def = next(node for node in ast_obj.body if isinstance(
+                node, ast.FunctionDef))
+            func_def.name = name.split("(")[0].strip()
+            code_obj = compile(ast_obj, "<string>", "exec")
+            # pylint: disable-next=exec-used
+            exec(code_obj, None, local_scope)
         except SyntaxError as e:
             raise SyntaxError(f"Invalid syntax in function body: {e}") from e
-        new_func = local_scope[
-            name.split("(")[0].strip()
-        ]  # Assuming the name is the first word in the function_body
+        new_func = local_scope[func_def.name]
         self.registry.add_function(name, new_func)
 
         return f"Function '{name}' added!"
@@ -56,12 +65,12 @@ class FunctionService:
         Executes a function from the registry.
 
         Args:
-        name (str): The name of the function to execute.
-        *args: Positional arguments to pass to the function.
-        **kwargs: Keyword arguments to pass to the function.
+            name (str): The name of the function to execute.
+            *args: Positional arguments to pass to the function.
+            **kwargs: Keyword arguments to pass to the function.
 
         Returns:
-        Any: The return value of the executed function.
+            Any: The return value of the executed function.
         """
         return self.registry.execute_function(name, *args, **kwargs)
 
@@ -70,10 +79,10 @@ class FunctionService:
         Adds multiple functions to the registry.
 
         Args:
-        functions (dict): A dictionary of function names and bodies.
+            functions (dict): A dictionary of function names and bodies.
 
         Returns:
-        str: A message indicating all functions were added successfully.
+            str: A message indicating all functions were added successfully.
         """
         responses = []
         for name, function_body in functions.items():
@@ -86,10 +95,10 @@ class FunctionService:
         Executes multiple functions from the registry.
 
         Args:
-        function_calls (list): A list of dictionaries containing function names, positional arguments, and keyword arguments.
+            function_calls (list): A list of dictionaries containing function names, positional arguments, and keyword arguments.
 
         Returns:
-        str: A message indicating all functions were executed successfully.
+            str: A message indicating all functions were executed successfully.
         """
         responses = []
         for call in function_calls:

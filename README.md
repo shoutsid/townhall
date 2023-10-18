@@ -12,6 +12,7 @@ Under heavy development and in transition from a previous personal project. Not 
 [![GitHub watchers](https://img.shields.io/github/watchers/shoutsid/townhall.svg?style=social&label=Watch)]()
 [![GitHub followers](https://img.shields.io/github/followers/shoutsid.svg?style=social&label=Follow)]()
 [![GitHub license](https://img.shields.io/github/license/shoutsid/townhall.svg)]()
+[![Security: bandit](https://img.shields.io/badge/security-bandit-yellow.svg)](https://github.com/PyCQA/bandit)
 
 A Python-based chatbot framework built on the autogen foundation, utilizing advanced agents for dynamic conversations and function orchestration, enhancing and expanding traditional chatbot capabilities.
 
