@@ -38,7 +38,7 @@ numpy==1.26.1
 nvidia-cublas-cu12==12.2.5.6
 nvidia-cuda-cupti-cu12==12.2.142
 nvidia-cuda-nvrtc-cu12==12.1.105
-nvidia-cuda-runtime-cu12==12.1.105
+nvidia-cuda-runtime-cu12==12.2.140
 nvidia-cudnn-cu12==8.9.2.26
 nvidia-cufft-cu12==11.0.2.54
 nvidia-curand-cu12==10.3.2.106
