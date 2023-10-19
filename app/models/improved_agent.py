@@ -31,7 +31,17 @@ class ImprovedAgent:
     - previous_loss (list): A list of the previous loss for each task.
     """
 
-    def __init__(self, id, num_tasks, num_features):
+    def __init__(self, agent_id, num_tasks, num_features):
+        """
+        Initializes a new instance of the ImprovedAgent class.
+    
+        Args:
+        - agent_id (int): The ID of the agent.
+        - num_tasks (int): The number of tasks the agent can perform.
+        - num_features (int): The number of features in the state space.
+        """
+        self.agent_id = agent_id
+        self.num_tasks = num_tasks
         """
         Initializes a new instance of the ImprovedAgent class.
 
