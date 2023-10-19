@@ -5,7 +5,7 @@ from app.models import CooperativeAgent2, Message
 
 @pytest.fixture
 def agent():
-    return CooperativeAgent2(id=1, grid_size=10, position=(0, 0))
+    return CooperativeAgent2(agent_id=1, grid_size=10, position=(0, 0))
 
 
 def test_send_message(agent: CooperativeAgent2):
