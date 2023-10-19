@@ -19,7 +19,7 @@ FLAML==2.1.1
 frozenlist==1.4.0
 fsspec==2023.9.2
 gitdb==4.0.10
-GitPython==3.1.37
+GitPython==3.1.40
 huggingface-hub==0.18.0
 humanfriendly==10.0
 idna==3.4
