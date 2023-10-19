@@ -19,7 +19,9 @@ class BaseCooperativeAgent:
         positions (list): A list of all positions the agent has visited.
     """
 
-    def __init__(self, id, grid_size, position=None):
+    def __init__(self, agent_id, grid_size, position=None):
+        self.id = agent_id
+        # Rest of the code...
         self.id = id
         self.grid_size = grid_size
         if position is None:
