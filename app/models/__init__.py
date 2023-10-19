@@ -5,7 +5,7 @@ It is usually empty, but you can put initialization code for the package in it i
 
 from .constants import *
 from .cooperative_agent import *
-from .dqn import *
+from .dqn import DQN  # Replace * with the specific object(s) you need
 from .environment import *
 from .improved_agent import *
 from .life_long_model import *
