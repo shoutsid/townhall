@@ -3,7 +3,7 @@ This module contains classes for multi-agent environments.
 """
 
 
-import random
+import secrets
 from app.models import CooperativeAgent2
 
 
@@ -40,7 +40,7 @@ class BaseMultiAgentEnvironment:
         Returns:
             tuple: A tuple containing the x and y coordinates of the position.
         """
-        return (random.randint(0, self.grid_size - 1), random.randint(0, self.grid_size - 1))
+        return (secrets.randbelow(self.grid_size), secrets.randbelow(self.grid_size))
 
     def step(self):
         """

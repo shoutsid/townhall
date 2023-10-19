@@ -3,7 +3,7 @@ This module contains the base class for cooperative agents in the Townhall simul
 """
 
 import torch
-import random
+import secrets
 import numpy as np
 from app.models.message import Message
 
@@ -21,8 +21,6 @@ class BaseCooperativeAgent:
 
     def __init__(self, agent_id, grid_size, position=None):
         self.id = agent_id
-        # Rest of the code...
-        self.id = id
         self.grid_size = grid_size
         if position is None:
             self.position = self.random_position()
@@ -37,7 +35,8 @@ class BaseCooperativeAgent:
         Returns:
             tuple: A tuple representing the x and y coordinates of the position.
         """
-        return (random.randint(0, self.grid_size - 1), random.randint(0, self.grid_size - 1))
+
+        return (secrets.randbelow(self.grid_size), secrets.randbelow(self.grid_size))
 
     def take_action(self, targets):
         """
@@ -93,8 +92,8 @@ class CooperativeAgent1(BaseCooperativeAgent):
 
     def take_action(self, targets):
         epsilon = 0.1
-        if random.random() < epsilon:
-            action = random.randint(0, 3)
+        if secrets.randbelow(100) < epsilon * 100:
+            action = secrets.randbelow(4)
         else:
             state = torch.tensor(
                 self.position, dtype=torch.float32).unsqueeze(0)
