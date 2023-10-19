@@ -155,7 +155,9 @@ class CooperativeAgent2(BaseCooperativeAgent):
     - calculate_reward(targets): Calculates the reward based on the distance traveled towards the targets.
     """
 
-    def __init__(self, id, grid_size, position=None):
+    def __init__(self, agent_id, grid_size, position=None):
+        super().__init__(agent_id, grid_size, position=position)
+        self.messages = []
         super().__init__(id, grid_size, position=position)
         self.messages = []
 
