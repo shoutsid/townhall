@@ -12,3 +12,4 @@ exclude_paths:
   - "dist/**"
   - "docs/**"
   - "townhall.egg-info/**"
+  - "__init__.py"
