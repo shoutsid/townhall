@@ -85,7 +85,9 @@ class CooperativeAgent1(BaseCooperativeAgent):
         calculate_reward(targets): Calculates the reward for the agent based on its current position and the targets.
     """
 
-    def __init__(self, id, grid_size, num_features, position=None):
+    def __init__(self, agent_id, grid_size, num_features, position=None):
+        super().__init__(agent_id, grid_size, position=position)
+        self.num_features = num_features
         super().__init__(id, grid_size, position=position)
         self.num_features = num_features
 
