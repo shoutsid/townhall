@@ -8,7 +8,7 @@ from tinygrad.tensor import Tensor
 import numpy as np
 
 
-class LifeLongModel:
+class LifelongLearningModel:
     """
     A class representing a lifelong learning model.
 

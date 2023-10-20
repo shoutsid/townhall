@@ -6,7 +6,7 @@ import numpy as np
 from app.models.transition import Transition
 from app.models.dqn_torch import DQN
 from app.models.replay_memory import ReplayMemory
-from app.models.life_long_model import LifeLongModel
+from app.models.lifelong_learning_model import LifelongLearningModel
 from app.models.constants import BATCH_SIZE, GAMMA
 
 
@@ -28,8 +28,8 @@ class ImprovedAgent:
         self.agent_id = agent_id
         self.num_tasks = num_tasks
         self.num_features = num_features
-        self.models: List[LifeLongModel] = [
-            LifeLongModel(num_features) for _ in range(num_tasks)]
+        self.models: List[LifelongLearningModel] = [
+            LifelongLearningModel(num_features) for _ in range(num_tasks)]
 
         # DQN-related attributes
         self.device = torch.device(
