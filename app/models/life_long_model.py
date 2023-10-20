@@ -3,6 +3,7 @@ This module contains the LifeLongModel class, which represents a
 lifelong learning model that can be trained on multiple tasks.
 """
 
+from typing import List
 from tinygrad.tensor import Tensor
 import numpy as np
 
@@ -22,18 +23,18 @@ class LifeLongModel:
 
     Methods:
     --------
-    forward(x)
+    forward(x: np.ndarray) -> np.ndarray
         Performs a forward pass through the model.
-    train(x, y_true)
+    train(x: Tensor, y_true: List[float]) -> float
         Trains the model on a single input-output pair.
     """
 
-    def __init__(self, num_features):
+    def __init__(self, num_features: int):
         self.num_features = num_features
         self.w1 = Tensor(np.random.randn(5, num_features), requires_grad=True)
         self.w2 = Tensor(np.random.randn(5), requires_grad=True)
 
-    def forward(self, x):
+    def forward(self, x: np.ndarray) -> np.ndarray:
         """
         Forward pass of the life_long_model.
 
@@ -47,7 +48,7 @@ class LifeLongModel:
         x = self.w1.dot(x.transpose()).relu()
         return self.w2.dot(x)
 
-    def train(self, x, y_true):
+    def train(self, x: Tensor, y_true: List[float]) -> float:
         """
         Trains the model on the given input and target output.
 

@@ -2,6 +2,7 @@
 Replay memory module, which contains the ReplayMemory class for storing transitions.
 """
 
+from typing import List, Tuple
 import random
 from app.models.transition import Transition
 
@@ -20,12 +21,12 @@ class ReplayMemory:
         position (int): The index of the next available slot in the memory.
     """
 
-    def __init__(self, capacity):
-        self.capacity = capacity
-        self.memory = []
-        self.position = 0
+    def __init__(self, capacity: int) -> None:
+        self.capacity: int = capacity
+        self.memory: List[Transition] = []
+        self.position: int = 0
 
-    def push(self, *args):
+    def push(self, *args: Tuple) -> None:
         """
         Saves a transition to the replay memory.
 
@@ -37,7 +38,7 @@ class ReplayMemory:
         self.memory[self.position] = Transition(*args)
         self.position = (self.position + 1) % self.capacity
 
-    def sample(self, batch_size):
+    def sample(self, batch_size: int) -> List[Transition]:
         """
         Randomly samples a batch of transitions from memory.
 
@@ -49,8 +50,11 @@ class ReplayMemory:
         """
         return random.sample(self.memory, batch_size)
 
-    def __len__(self):
+    def __len__(self) -> int:
         """
         Returns the length of the replay memory.
+
+        Returns:
+            int: The length of the replay memory.
         """
         return len(self.memory)

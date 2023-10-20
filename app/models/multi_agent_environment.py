@@ -3,6 +3,7 @@ This module contains classes for multi-agent environments.
 """
 
 
+import typing
 import secrets
 from app.models import CooperativeAgent2
 

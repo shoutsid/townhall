@@ -3,6 +3,7 @@ DQN model class, based on the DQN model from the PyTorch tutorial:
 """
 import torch
 import torch.nn as nn
+from typing import List
 
 
 class DQN(nn.Module):
@@ -11,7 +12,7 @@ class DQN(nn.Module):
 
     Args:
         input_size (int): The number of input features.
-        hidden_sizes (list of int): The number of units in each hidden layer.
+        hidden_sizes (List[int]): The number of units in each hidden layer.
         output_size (int): The number of output units.
 
     Attributes:
@@ -23,7 +24,7 @@ class DQN(nn.Module):
 
     """
 
-    def __init__(self, input_size, hidden_sizes=None, output_size=1):
+    def __init__(self, input_size: int, hidden_sizes: List[int] = None, output_size: int = 1):
         super().__init__()
         if hidden_sizes is None:
             hidden_sizes = [32, 16]
@@ -38,7 +39,7 @@ class DQN(nn.Module):
         # Create output layer
         self.output_layer = nn.Linear(in_size, output_size)
 
-    def forward(self, x):
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
         """
         Forward pass of the DQN network.
 

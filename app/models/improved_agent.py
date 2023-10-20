@@ -1,8 +1,4 @@
-"""
-A module containing the ImprovedAgent class, which represents an improved agent
-that uses a Deep Q-Network (DQN) to learn to perform multiple tasks.
-"""
-
+from typing import List, Tuple
 import torch
 import torch.optim as optim
 import torch.nn.functional as F
@@ -16,25 +12,14 @@ from app.models.constants import BATCH_SIZE, GAMMA
 
 class ImprovedAgent:
     """
-    A class representing an improved agent that uses a Deep Q-Network (DQN) to learn to perform multiple tasks.
-
-    Attributes:
-    - id (int): The ID of the agent.
-    - num_tasks (int): The number of tasks the agent can perform.
-    - num_features (int): The number of features in the state space.
-    - models (list): A list of ImprovedLLM models, one for each task.
-    - device (torch.device): The device (CPU or GPU) on which to run the DQN.
-    - target_net (DQN): The target DQN used for computing the target Q-values.
-    - policy_net (DQN): The policy DQN used for computing the current Q-values.
-    - optimizer (torch.optim.RMSprop): The optimizer used for updating the policy DQN.
-    - memory (ReplayMemory): The replay memory used for storing transitions.
-    - previous_loss (list): A list of the previous loss for each task.
+    A module containing the ImprovedAgent class, which represents an improved agent
+    that uses a Deep Q-Network (DQN) to learn to perform multiple tasks.
     """
 
-    def __init__(self, agent_id, num_tasks, num_features):
+    def __init__(self, agent_id: int, num_tasks: int, num_features: int):
         """
         Initializes a new instance of the ImprovedAgent class.
-    
+
         Args:
         - agent_id (int): The ID of the agent.
         - num_tasks (int): The number of tasks the agent can perform.
@@ -42,32 +27,22 @@ class ImprovedAgent:
         """
         self.agent_id = agent_id
         self.num_tasks = num_tasks
-        """
-        Initializes a new instance of the ImprovedAgent class.
-
-        Args:
-        - id (int): The ID of the agent.
-        - num_tasks (int): The number of tasks the agent can perform.
-        - num_features (int): The number of features in the state space.
-        """
-        self.id = id
-        self.num_tasks = num_tasks
         self.num_features = num_features
-        self.models = [LifeLongModel(num_features) for _ in range(num_tasks)]
+        self.models: List[LifeLongModel] = [
+            LifeLongModel(num_features) for _ in range(num_tasks)]
 
         # DQN-related attributes
         self.device = torch.device(
             "cuda" if torch.cuda.is_available() else "cpu")
-        self.target_net = DQN(num_features).to(self.device)
-        self.policy_net = DQN(num_features).to(self.device)
+        self.target_net: DQN = DQN(num_features).to(self.device)
+        self.policy_net: DQN = DQN(num_features).to(self.device)
         self.target_net.load_state_dict(self.policy_net.state_dict())
         self.target_net.eval()
         self.optimizer = optim.RMSprop(self.policy_net.parameters())
         self.memory = ReplayMemory(10000)
-        # Initialize with zeros for each task
-        self.previous_loss = [0] * num_tasks
+        self.previous_loss: List[float] = [0] * num_tasks
 
-    def observe(self, task):
+    def observe(self, task: int) -> Tuple[float, float]:
         """
         Observe the current state of the environment and update the agent's models and DQN.
 
@@ -81,31 +56,26 @@ class ImprovedAgent:
             self.num_features)  # Expanded state space
         target = np.sum(observations)
         loss = self.models[task].train(observations, target)
-
-        # Calculate reward based on the difference between current and previous loss
         reward = self.calculate_reward(loss, task)
-
-        # Update DQN
         self.update_dqn(observations, reward, task)
-
         return loss, reward
 
-    def calculate_reward(self, loss, task):
+    def calculate_reward(self, loss: float, task: int) -> float:
         """
         Calculates the reward for the agent based on the difference between the current and previous loss.
 
         Args:
             loss (float): The current loss value for the task.
-            task (str): The name of the task for which the loss is being calculated.
+            task (int): The task ID of the current task.
 
         Returns:
             float: The reward value for the agent.
         """
         reward = self.previous_loss[task] - loss
-        self.previous_loss[task] = loss  # Store current loss for the next step
+        self.previous_loss[task] = loss
         return reward
 
-    def update_dqn(self, state, reward, task):
+    def update_dqn(self, state: torch.Tensor, reward: float, task: int) -> None:
         """
         Updates the Deep Q-Network (DQN) by training it on a batch of transitions from the replay memory.
 
@@ -117,7 +87,7 @@ class ImprovedAgent:
         Returns:
             None
         """
-        self.memory.push(state, task, None, reward)  # Pass None for next_state
+        self.memory.push(state, task, None, reward)
         if len(self.memory) < BATCH_SIZE:
             return
         transitions = self.memory.sample(BATCH_SIZE)
@@ -125,8 +95,7 @@ class ImprovedAgent:
         non_final_mask = torch.tensor(tuple(map(
             lambda s: s is not None, batch.next_state)), device=self.device, dtype=torch.bool)
 
-        if any(non_final_mask):  # Check if at least one non-final state is present
-            # Filter out empty tensors from non_final_next_states
+        if any(non_final_mask):
             non_final_next_states = torch.stack(
                 [s for s, mask in zip(batch.next_state, non_final_mask) if mask])
 

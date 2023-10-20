@@ -5,6 +5,7 @@ This module contains the base class for cooperative agents in the Townhall simul
 import torch
 import secrets
 import numpy as np
+from typing import List, Optional, Tuple
 from app.models.message import Message
 
 
@@ -19,7 +20,7 @@ class BaseCooperativeAgent:
         positions (list): A list of all positions the agent has visited.
     """
 
-    def __init__(self, agent_id, grid_size, position=None):
+    def __init__(self, agent_id: int, grid_size: int, position: Optional[Tuple[int, int]] = None) -> None:
         self.id = agent_id
         self.grid_size = grid_size
         if position is None:
@@ -28,7 +29,7 @@ class BaseCooperativeAgent:
             self.position = position
         self.positions = [self.position]
 
-    def random_position(self):
+    def random_position(self) -> Tuple[int, int]:
         """
         Returns a random position on the grid.
 
@@ -38,7 +39,7 @@ class BaseCooperativeAgent:
 
         return (secrets.randbelow(self.grid_size), secrets.randbelow(self.grid_size))
 
-    def take_action(self, targets):
+    def take_action(self, targets: List[Tuple[int, int]]) -> None:
         """
         Takes an action based on the current state of the simulation.
 
@@ -51,7 +52,7 @@ class BaseCooperativeAgent:
         raise NotImplementedError(
             "This method should be overridden by subclass")
 
-    def calculate_reward(self, targets):
+    def calculate_reward(self, targets: List[Tuple[int, int]]) -> None:
         """
         Calculates the reward for the agent based on the current state of the simulation.
 
@@ -84,13 +85,11 @@ class CooperativeAgent1(BaseCooperativeAgent):
         calculate_reward(targets): Calculates the reward for the agent based on its current position and the targets.
     """
 
-    def __init__(self, agent_id, grid_size, num_features, position=None):
+    def __init__(self, agent_id: int, grid_size: int, num_features: int, position: Optional[Tuple[int, int]] = None) -> None:
         super().__init__(agent_id, grid_size, position=position)
         self.num_features = num_features
-        super().__init__(id, grid_size, position=position)
-        self.num_features = num_features
 
-    def take_action(self, targets):
+    def take_action(self, targets: List[Tuple[int, int]]) -> int:
         epsilon = 0.1
         if secrets.randbelow(100) < epsilon * 100:
             action = secrets.randbelow(4)
@@ -112,7 +111,7 @@ class CooperativeAgent1(BaseCooperativeAgent):
         self.positions.append(self.position)
         return action
 
-    def calculate_reward(self, targets):
+    def calculate_reward(self, targets: List[Tuple[int, int]]) -> float:
         """
         Calculates the reward for the agent based on its current position and the targets.
 
@@ -148,19 +147,17 @@ class CooperativeAgent2(BaseCooperativeAgent):
     - positions (list): The list of positions visited by the agent.
 
     Methods:
-    - send_message(targets): Sends a message to the specified targets.
-    - receive_messages(messages): Receives messages from other agents.
-    - take_action(targets): Takes an action based on the received messages and the current position of the agent.
-    - calculate_reward(targets): Calculates the reward based on the distance traveled towards the targets.
+    - send_message(targets: List[Tuple[int, int]]) -> Message: Sends a message to the specified targets.
+    - receive_messages(messages: List[Message]) -> None: Receives messages from other agents.
+    - take_action(targets: List[Tuple[int, int]]) -> None: Takes an action based on the received messages and the current position of the agent.
+    - calculate_reward(targets: List[Tuple[int, int]]) -> float: Calculates the reward based on the distance traveled towards the targets.
     """
 
-    def __init__(self, agent_id, grid_size, position=None):
+    def __init__(self, agent_id: int, grid_size: int, position: Tuple[int, int] = None):
         super().__init__(agent_id, grid_size, position=position)
-        self.messages = []
-        super().__init__(id, grid_size, position=position)
-        self.messages = []
+        self.messages: List[Message] = []
 
-    def send_message(self, targets):
+    def send_message(self, targets: List[Tuple[int, int]]) -> Message:
         """
         Sends a message to the specified targets.
 
@@ -174,7 +171,7 @@ class CooperativeAgent2(BaseCooperativeAgent):
                                 (self.position[1] - target[1]) ** 2) ** 0.5 for target in targets]
         return Message(self.id, self.position, perceived_distances)
 
-    def receive_messages(self, messages):
+    def receive_messages(self, messages: List[Message]) -> None:
         """
         Receives a list of messages and sets the agent's messages attribute to the given list.
 
@@ -186,7 +183,7 @@ class CooperativeAgent2(BaseCooperativeAgent):
         """
         self.messages = messages
 
-    def take_action(self, targets):
+    def take_action(self, targets: List[Tuple[int, int]]) -> None:
         """
         Takes an action for the cooperative agent based on the given targets.
 
@@ -215,7 +212,7 @@ class CooperativeAgent2(BaseCooperativeAgent):
         self.position = new_position
         self.positions.append(new_position)
 
-    def calculate_reward(self, targets):
+    def calculate_reward(self, targets: List[Tuple[int, int]]) -> float:
         """
         Calculates the reward for the agent based on the distance to the given targets.
 
