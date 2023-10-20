@@ -50,7 +50,7 @@ The advanced agents adapt and learn, making each conversation better than the la
 
 Before you begin, ensure you have met the following requirements:
 
-- Python 3.8 or higher
+- Python 3.10 or higher
 - pip package manager
 
 ## 🛠️ Installation
