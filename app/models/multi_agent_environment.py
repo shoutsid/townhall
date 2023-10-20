@@ -3,7 +3,7 @@ This module contains classes for multi-agent environments.
 """
 
 import secrets
-from typing import List, Tuple
+from typing import List, Tuple, Optional
 from app.models import CooperativeAgent2
 from torch import nn
 from app.models.replay_memory import ReplayMemory
@@ -110,7 +110,7 @@ class MultiAgentEnvironment3(BaseMultiAgentEnvironment):
         targets (list): A list of Target objects representing the targets in the environment.
     """
 
-    def step(self, policy_net: nn.Module | None = None, memory: ReplayMemory | None = None) -> None:
+    def step(self, policy_net: Optional[nn.Module] = None, memory: Optional[ReplayMemory] = None) -> None:
         """
         Takes a step in the environment by having each agent take an action and updating the memory with the results.
 
