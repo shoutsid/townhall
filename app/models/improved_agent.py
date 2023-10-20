@@ -4,7 +4,7 @@ import torch.optim as optim
 import torch.nn.functional as F
 import numpy as np
 from app.models.transition import Transition
-from app.models.dqn import DQN
+from app.models.dqn_torch import DQN
 from app.models.replay_memory import ReplayMemory
 from app.models.life_long_model import LifeLongModel
 from app.models.constants import BATCH_SIZE, GAMMA
