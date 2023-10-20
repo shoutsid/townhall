@@ -1,6 +1,7 @@
 import pytest
 import numpy as np
-from app.models import CooperativeAgent2, Message
+from app.models.cooperative_agent import CooperativeAgent2
+from app.models.message import Message
 
 
 @pytest.fixture
