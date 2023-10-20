@@ -4,8 +4,7 @@ DQN model class, based on the DQN model from the PyTorch tutorial:
 from typing import List
 from tinygrad.tensor import Tensor
 
-
-class DQN():
+class DQN:
     """
     Deep Q-Network (DQN) class.
 

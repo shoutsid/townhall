@@ -5,8 +5,8 @@ This module contains the base class for cooperative agents in the Townhall simul
 import secrets
 import numpy as np
 from typing import List, Optional, Tuple
-from app.models.message import Message
 from tinygrad.tensor import Tensor
+from app.models.message import Message
 
 
 class BaseCooperativeAgent:
@@ -203,11 +203,15 @@ class CooperativeAgent2(BaseCooperativeAgent):
         target_priorities = [my_distance if my_distance <= closest_target_distance else float(
             'inf') for my_distance, closest_target_distance in zip(my_distances, closest_target_distances)]
 
+        # Find the index of the target with the highest priority
         chosen_target_index = target_priorities.index(min(target_priorities))
         chosen_target = targets[chosen_target_index]
 
+        # Calculate the new position based on the chosen target
         new_position = (self.position[0] + np.sign(chosen_target[0] - self.position[0]),
                         self.position[1] + np.sign(chosen_target[1] - self.position[1]))
+
+        # Update the agent's position and positions history
         self.position = new_position
         self.positions.append(new_position)
 

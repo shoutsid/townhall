@@ -42,7 +42,7 @@ class Environment:
         for agent in self.agents:
             for task in range(self.num_tasks):
                 loss, reward = agent.observe(task)
-                self.performance[agent.id][task].append(loss)
-                self.rewards[agent.id][task].append(reward)
-            self.agent_positions[agent.id].append(
+                self.performance[agent.agent_id][task].append(loss)
+                self.rewards[agent.agent_id][task].append(reward)
+            self.agent_positions[agent.agent_id].append(
                 np.random.rand(2))  # Random 2D positions
