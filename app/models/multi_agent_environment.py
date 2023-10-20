@@ -2,10 +2,11 @@
 This module contains classes for multi-agent environments.
 """
 
-
-import typing
 import secrets
+from typing import List, Tuple
 from app.models import CooperativeAgent2
+from torch import nn
+from app.models.replay_memory import ReplayMemory
 
 
 class BaseMultiAgentEnvironment:
@@ -26,7 +27,7 @@ class BaseMultiAgentEnvironment:
         targets (list): List of target positions.
     """
 
-    def __init__(self, num_agents, num_targets, grid_size, num_features):
+    def __init__(self, num_agents: int, num_targets: int, grid_size: int, num_features: int) -> None:
         self.num_agents = num_agents
         self.num_targets = num_targets
         self.grid_size = grid_size
@@ -34,7 +35,7 @@ class BaseMultiAgentEnvironment:
             i, grid_size, num_features) for i in range(num_agents)]
         self.targets = [self.random_position() for _ in range(num_targets)]
 
-    def random_position(self):
+    def random_position(self) -> Tuple[int, int]:
         """
         Returns a random position within the grid.
 
@@ -43,7 +44,7 @@ class BaseMultiAgentEnvironment:
         """
         return (secrets.randbelow(self.grid_size), secrets.randbelow(self.grid_size))
 
-    def step(self):
+    def step(self) -> List[float]:
         """
         This method should be overridden by subclass.
         """
@@ -60,7 +61,7 @@ class MultiAgentEnvironment1(BaseMultiAgentEnvironment):
         targets (list): A list of Target objects representing the targets in the environment.
     """
 
-    def step(self):
+    def step(self) -> List[float]:
         """
         Executes one step of the environment, where each agent takes an action and receives a reward based on the state of the environment.
 
@@ -87,7 +88,7 @@ class MultiAgentEnvironment2(BaseMultiAgentEnvironment):
         targets (list): A list of Target objects representing the targets in the environment.
     """
 
-    def step(self):
+    def step(self) -> List[float]:
         messages = [agent.send_message(self.targets) for agent in self.agents]
         for agent in self.agents:
             agent.receive_messages(messages)
@@ -109,7 +110,7 @@ class MultiAgentEnvironment3(BaseMultiAgentEnvironment):
         targets (list): A list of Target objects representing the targets in the environment.
     """
 
-    def step(self, policy_net, memory):
+    def step(self, policy_net: nn.Module | None = None, memory: ReplayMemory | None = None) -> None:
         """
         Takes a step in the environment by having each agent take an action and updating the memory with the results.
 
@@ -127,7 +128,7 @@ class MultiAgentEnvironment3(BaseMultiAgentEnvironment):
             reward = agent.calculate_reward(self.targets)
             memory.push(current_position, action, next_position, reward)
 
-    def reset(self):
+    def reset(self) -> None:
         """
         Resets the environment by randomly placing each agent in a new position.
 
