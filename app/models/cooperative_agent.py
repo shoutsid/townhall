@@ -2,11 +2,11 @@
 This module contains the base class for cooperative agents in the Townhall simulation.
 """
 
-import torch
 import secrets
 import numpy as np
 from typing import List, Optional, Tuple
 from app.models.message import Message
+from tinygrad.tensor import Tensor
 
 
 class BaseCooperativeAgent:
@@ -94,10 +94,9 @@ class CooperativeAgent1(BaseCooperativeAgent):
         if secrets.randbelow(100) < epsilon * 100:
             action = secrets.randbelow(4)
         else:
-            state = torch.tensor(
-                self.position, dtype=torch.float32).unsqueeze(0)
-            with torch.no_grad():
-                action = targets(state).max(1)[1].item()
+            state = Tensor(
+                np.array(self.position, dtype=np.float32)).reshape(1, 2)
+            action = targets(state).argmax().item()
 
         if action == 0 and self.position[1] < self.grid_size - 1:
             self.position = (self.position[0], self.position[1] + 1)
