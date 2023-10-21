@@ -10,6 +10,17 @@ The installation steps are the same as those of the Townhall project. Make sure 
 
 ## File Structure
 
+
+## Overview
+
+This module integrates the GPT-2 language model into the Townhall project using the Tinygrad framework. The GPT-2 model comes in different sizes including "gpt2-medium", and is useful for a variety of natural language processing tasks.
+
+## Installation
+
+The installation steps are the same as those of the Townhall project. Make sure to update your `requirements.txt` to include dependencies for GPT-2.
+
+## File Structure
+
 -   `attention.py`: Implements the Attention mechanism used in the Transformer architecture.
 -   `constants.py`: Holds constant values and configurations for the GPT-2 model.
 -   `feed_forward.py`: Implements the Feed Forward neural network used within the Transformer block.
