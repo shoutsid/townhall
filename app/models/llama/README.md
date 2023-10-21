@@ -1,4 +1,3 @@
-
 ```
 (.venv) james@Sid-Desktop:/mnt/e/workspace/townhall$ /mnt/e/workspace/townhall/.venv/bin/python /mnt/e/workspace/townhall/app/models/llama/llama.py
 using GPU backend
