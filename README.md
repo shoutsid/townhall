@@ -45,6 +45,10 @@ The advanced agents adapt and learn, making each conversation better than the la
 - **Chat Service**: The [chat service](https://github.com/shoutsid/townhall/blob/main/app/services/chat_service.py) module handles the logic for initiating and managing chats between agents.
 - **Function Service**: The [function service](https://github.com/shoutsid/townhall/blob/main/app/services/function_service.py) module provides functionalities for executing specific tasks.
 - **Planner Service**: The [planner service](https://github.com/shoutsid/townhall/blob/main/app/services/planner_service.py) module aids in planning and sequencing tasks for the chatbot.
+- **Llama Integration**: The Llama module is integrated to provide advanced functionalities. To run Llama locally, follow these steps:
+    - Ensure you have all the required dependencies by running `pip install -r requirements.txt`.
+    - Fetch the necessary resources by running the `pull_llama.sh` script located in [app/models/llama/weights/](https://github.com/shoutsid/townhall/blob/main/app/models/llama/weights/). Execute `bash app/models/llama/weights/pull_llama.sh`.
+    - To start Llama, run the following command: `python3 app/models/llama/llama.py`.
 
 ## 📝 Prerequisites
 
@@ -55,25 +59,28 @@ Before you begin, ensure you have met the following requirements:
 
 ## 🛠️ Installation
 
-The easiest way to start playing is click below to use the Github Codespace.
-
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/shoutsid/townhall?quickstart=1)
-
-### For Linux/Mac
+### For Mac
 
 ```bash
-git clone https://github.com/shoutsid/townhall.git
+git clone --recurse-submodules https://github.com/shoutsid/townhall.git
 cd townhall
-pip install -r requirements.txt
+METAL=1 ./setup.sh
+```
+
+### For Linux
+
+```bash
+git clone --recurse-submodules https://github.com/shoutsid/townhall.git
+cd townhall
+./setup.sh
 ```
 
 ### For Windows
+The easiest way to get setup on windows is to start playing is click below to use the Github Codespace. Otherwise this was developed on WSL Ubuntu.
 
-```bash
-git clone https://github.com/shoutsid/townhall.git
-cd townhall
-pip install -r requirements.txt
-```
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/shoutsid/townhall?quickstart=1)
+
+
 
 ## 🌐 Usage
 
