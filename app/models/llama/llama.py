@@ -4,7 +4,7 @@ import numpy as np
 np.set_printoptions(linewidth=200)
 from typing import Optional, Tuple, Dict
 
-from tinygrad.helpers import Timing, getenv, DEBUG, dtypes, CI
+from tinygrad.helpers import Timing, DEBUG, dtypes, CI
 from tinygrad.ops import Device
 from tinygrad.tensor import Tensor
 from tinygrad.nn import Embedding, Linear
