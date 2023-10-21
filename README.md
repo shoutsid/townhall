@@ -96,7 +96,13 @@ cd ../../../..
 python3 app/models/llama/llama.py
 ```
 
+### GPT-2 Integration
 
+To start the GPT-2 module, run the following commands:
+
+```bash
+python3 app/models/gpt2/gpt2.py
+```
 
 ## 🤝 Contributing
 
