@@ -1,5 +1,6 @@
 // import logo from './logo.svg';
 // import './App.css';
+import React from 'react';
 import './ai_styles.css';
 
 function App() {
@@ -35,19 +36,19 @@ function App() {
           </div>
 
           <div className="col-3 bg-light p-3">
-            <h5>Your files</h5>
+            <h5>{"Your files"}</h5>
             <div className="mb-3">
-              <p><a href="#" className="text-primary">All Files</a></p>
+              <p><a href="#" className="text-primary" data-test-id="all-files-link">>All Files</a></p>
               <p><a href="#" className="text-primary">Notification preferences</a></p>
               <div className="mb-3">
                 <img src="https://via.placeholder.com/40" alt="User" className="rounded-circle" width="40" />
                 <a href="#" className="ms-2 text-dark">View Nancy&apos;s profile</a>
               </div>
-              <p><a href="#" className="text-danger">Delete conversation</a></p>
+              <p><a href="#" className="text-danger" data-test-id="delete-conversation">Delete conversation</a></p>
             </div>
             <div className="profile-options">
               <h5>Nancy Fernandez</h5>
-              <p>Online</p>
+              <p>{'Online'}</p>
             </div>
           </div>
         </div>
