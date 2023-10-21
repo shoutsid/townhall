@@ -14,3 +14,4 @@ townhall.egg-info/
 logs/
 
 app/models/llama/weights/LLaMa/**
+!app/models/llama/weights/LLaMa/pull_llama.sh

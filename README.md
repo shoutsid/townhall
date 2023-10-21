@@ -59,14 +59,6 @@ Before you begin, ensure you have met the following requirements:
 
 ## 🛠️ Installation
 
-### For Mac
-
-```bash
-git clone --recurse-submodules https://github.com/shoutsid/townhall.git
-cd townhall
-METAL=1 ./setup.sh
-```
-
 ### For Linux
 
 ```bash
@@ -75,22 +67,36 @@ cd townhall
 ./setup.sh
 ```
 
-### For Windows
+### For Mac/Windows
 The easiest way to get setup on windows is to start playing is click below to use the Github Codespace. Otherwise this was developed on WSL Ubuntu.
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/shoutsid/townhall?quickstart=1)
 
 
-
 ## 🌐 Usage
 
-To start the chatbot, run the following command:
+### Basic Buddy
+
+To start the basic buddy, run the following command:
 
 ```bash
+export OPENAI_API_KEY=<your-api-key>
 python main.py
 ```
 
-For more advanced usage, refer to the [documentation (todo)](#).
+### LLaMa Integration
+
+To start the Llama module, run the following commands:
+
+```bash
+pip install -r requirements.txt
+cd app/models/llama/weights/
+bash pull_llama.sh
+cd ../../../..
+python3 app/models/llama/llama.py
+```
+
+
 
 ## 🤝 Contributing
 
@@ -111,10 +117,10 @@ For the detailed roadmap of upcoming features, please visit our [Project Board](
 ## 👏 Credits
 
 - **Prompt Contributions**: A big thank you to [Josh-XT](https://github.com/Josh-XT) for the various prompts. Check out his repository [AGiXT](https://github.com/Josh-XT/AGiXT) for more details.
-
 - **Autogen Foundation**: Townhall is built upon the robust [Autogen Framework](https://github.com/microsoft/autogen/), a pioneering platform for LLMs by Microsoft.
-
 - **OpenAI Assistant**: Special mention to [OpenAI Assistant](https://chat.openai.com/) for aiding in the development process.
+- **tinygrad**: Special thanks to [tinygrad](https://github.com/tinygrad/tinygrad) for providing the foundational machine learning framework that enhances our project's capabilities.
+
 
 Developed by @shoutsid.
 
