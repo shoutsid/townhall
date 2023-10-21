@@ -47,7 +47,7 @@ The advanced agents adapt and learn, making each conversation better than the la
 - **Planner Service**: The [planner service](https://github.com/shoutsid/townhall/blob/main/app/services/planner_service.py) module aids in planning and sequencing tasks for the chatbot.
 - **Llama Integration**: The Llama module is integrated to provide advanced functionalities. To run Llama locally, follow these steps:
     - Ensure you have all the required dependencies by running `pip install -r requirements.txt`.
-    - Fetch the necessary resources by running the `pull_llama.sh` script located in [app/models/llama/weights/](https://github.com/shoutsid/townhall/blob/main/app/models/llama/weights/). Execute `bash app/models/llama/weights/pull_llama.sh`.
+    - Fetch the necessary resources by running the `pull_llama.sh` script located in [app/models/llama/weights/](https://github.com/shoutsid/townhall/blob/main/app/models/llama/weights/LLaMa). Execute `bash app/models/llama/weights/LLaMa/pull_llama.sh`.
     - To start Llama, run the following command: `python3 app/models/llama/llama.py`.
 
 ## 📝 Prerequisites
