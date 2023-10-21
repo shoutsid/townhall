@@ -41,7 +41,9 @@ class GPT2:
         model = Transformer(**params)
         weights = torch_load(fetch_as_file(get_url(model_size)))
         # special treatment for the Conv1D weights we need to transpose
-        transposed = ['attn.c_attn.weight', 'attn.c_proj.weight', 'mlp.c_fc.weight', 'mlp.c_proj.weight']
+        transposed = [
+            'attn.c_attn.weight', 'attn.c_proj.weight', 'mlp.c_fc.weight', 'mlp.c_proj.weight'
+        ]
         for k in weights.keys():
             if any(k.endswith(w) for w in transposed):
                 weights[k] = Tensor(weights[k].numpy().T)
@@ -58,7 +60,13 @@ class GPT2:
         self.model = model
         self.tokenizer = tokenizer
 
-    def greedy_until(self, prompt:str, max_length:int, temperature:float, timing:bool=False) -> str:
+    def greedy_until(
+            self,
+            prompt: str,
+            max_length: int,
+            temperature: float,
+            timing: bool = False
+    ) -> str:
         """
         Generates text starting from the given prompt using greedy decoding.
 
@@ -79,10 +87,12 @@ class GPT2:
                 print("")
             st = GlobalCounters.time_sum_s
             with Timing("total ", enabled=timing):
+                # pylint: disable=line-too-long
                 with Timing("ran model in ", on_exit=(lambda et: f", {(GlobalCounters.time_sum_s-st)*1e3:.2f} ms on GPU"+
                             f", {GlobalCounters.global_ops*1e-9:.2f} GOPS, {GlobalCounters.global_mem*1e-9:.2f} GB"+
                             f", {GlobalCounters.global_mem*1e-9/(GlobalCounters.time_sum_s-st):.2f} GB/s") if DEBUG else None, enabled=timing):
                     probs = self.model(Tensor([toks[start_pos:]]), start_pos, temperature)
+                # pylint: enable=line-too-long
                 probs_np = probs.numpy()
                 tok = int(np.random.choice(len(probs_np), p=probs_np))
             start_pos = len(toks)

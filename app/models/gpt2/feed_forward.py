@@ -1,11 +1,11 @@
 """
-
+Feedforward layer with GELU activation function.
 """
 
 from tinygrad.tensor import Tensor
 from tinygrad.nn import Linear
 
-class FeedForward:
+class FeedForward: # pylint: disable=too-few-public-methods
     """
     A feedforward neural network layer with a GELU activation function.
 

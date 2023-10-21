@@ -11,7 +11,8 @@ from feed_forward import FeedForward
 
 class TransformerBlock:
     """
-    A single transformer block that applies multi-head attention and feedforward layers to its input.
+    A single transformer block that applies multi-head attention and
+    feedforward layers to its input.
 
     Args:
         dim (int): The input and output dimension of the transformer block.
@@ -75,18 +76,23 @@ class TransformerBlock:
 
         Args:
             x (Tensor): The input tensor of shape `(batch_size, seq_len, hidden_size)`.
-            cache_k (Optional[Tensor]): The cached key tensor of shape `(batch_size, num_heads, seq_len, head_size)`.
+            cache_k (Optional[Tensor]):
+                The cached key tensor of shape `(batch_size, num_heads, seq_len, head_size)`.
                 If `None`, the key tensor is computed from scratch.
-            cache_v (Optional[Tensor]): The cached value tensor of shape `(batch_size, num_heads, seq_len, head_size)`.
+            cache_v (Optional[Tensor]):
+                The cached value tensor of shape `(batch_size, num_heads, seq_len, head_size)`.
                 If `None`, the value tensor is computed from scratch.
             start_pos (int): The starting position for decoding. Used only during inference.
-            mask (Optional[Tensor]): The attention mask tensor of shape `(batch_size, seq_len, seq_len)`.
+            mask (Optional[Tensor]):
+                The attention mask tensor of shape `(batch_size, seq_len, seq_len)`.
 
         Returns:
             Tuple[Tensor, Optional[Tensor], Optional[Tensor]]: A tuple containing:
                 - The output tensor of shape `(batch_size, seq_len, hidden_size)`.
-                - The updated cached key tensor of shape `(batch_size, num_heads, seq_len + start_pos, head_size)`.
-                - The updated cached value tensor of shape `(batch_size, num_heads, seq_len + start_pos, head_size)`.
+                - The updated cached key tensor of shape
+                    - `(batch_size, num_heads, seq_len + start_pos, head_size)`.
+                - The updated cached value tensor of shape
+                    - `(batch_size, num_heads, seq_len + start_pos, head_size)`.
         """
         output, cache_k, cache_v = self.attn(self.ln_1(x), cache_k, cache_v, start_pos, mask)
         h = x + output

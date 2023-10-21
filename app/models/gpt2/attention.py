@@ -1,5 +1,5 @@
 """
-    Attention layer for GPT-2
+Attention layer for GPT-2
 """
 
 from typing import Optional
@@ -7,7 +7,7 @@ from tinygrad.tensor import Tensor
 from tinygrad.nn import Linear
 
 
-class Attention:
+class Attention: # pylint: disable=too-few-public-methods
     """
     Multi-head scaled dot-product attention layer.
 

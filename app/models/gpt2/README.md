@@ -1,4 +1,3 @@
-Certainly, here's the README.md for the GPT-2 integration into the Townhall project:
 # GPT-2 Integration in Townhall
 
 ## Overview
@@ -11,14 +10,14 @@ The installation steps are the same as those of the Townhall project. Make sure 
 
 ## File Structure
 
-- `attention.py`: Implements the Attention mechanism used in the Transformer architecture.
-- `constants.py`: Holds constant values and configurations for the GPT-2 model.
-- `feed_forward.py`: Implements the Feed Forward neural network used within the Transformer block.
-- `gpt2.py`: The main file that builds and runs the GPT-2 model.
-- `layer_norm.py`: Implements Layer Normalization.
-- `transformer.py`: Implements the Transformer architecture.
-- `transformer_block.py`: Implements a block of the Transformer architecture, consisting of one attention layer and one feed-forward layer.
-- `utils.py`: Various utility functions.
+-   `attention.py`: Implements the Attention mechanism used in the Transformer architecture.
+-   `constants.py`: Holds constant values and configurations for the GPT-2 model.
+-   `feed_forward.py`: Implements the Feed Forward neural network used within the Transformer block.
+-   `gpt2.py`: The main file that builds and runs the GPT-2 model.
+-   `layer_norm.py`: Implements Layer Normalization.
+-   `transformer.py`: Implements the Transformer architecture.
+-   `transformer_block.py`: Implements a block of the Transformer architecture, consisting of one attention layer and one feed-forward layer.
+-   `utils.py`: Various utility functions.
 
 ## Usage
 
@@ -30,23 +29,22 @@ Run the `gpt2.py` script to use the GPT-2 model:
 
 ### Parameters
 
-- `--prompt`: The prompt text to start generating from.
-- `--count`: The maximum number of tokens to generate.
-- `--temperature`: Controls the randomness of the output.
-- `--model_size`: The size of the GPT-2 model to use (e.g., "gpt2-medium").
-- `--timing`: Enable timing logs.
+-   `--prompt`: The prompt text to start generating from.
+-   `--count`: The maximum number of tokens to generate.
+-   `--temperature`: Controls the randomness of the output.
+-   `--model_size`: The size of the GPT-2 model to use (e.g., "gpt2-medium").
+-   `--timing`: Enable timing logs.
 
 ## Performance Metrics
 
 The GPT-2 model can be run using different configurations, and its performance can be observed as follows:
 
-- Loaded weights in 1599.03 ms, 1.63 GB loaded at 1.02 GB/s
-- Text generation speed varies based on the model size and hardware.
+-   Loaded weights in 1599.03 ms, 1.63 GB loaded at 1.02 GB/s
+-   Text generation speed varies based on the model size and hardware.
 
 ## Contributions
 
 This integration is part of issue #50 in the Townhall project. Feel free to contribute by submitting pull requests or creating issues.
-
 
 ```bash
 (.venv) james@Sid-Desktop:/mnt/e/workspace/townhall$ /mnt/e/workspace/townhall/.venv/bin/python /mnt/e/workspace/townhall/app/models/gpt2/gpt2.py
