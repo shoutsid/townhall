@@ -184,7 +184,7 @@ class Transformer:
                 dtype=dtypes.float16 if getenv('FP16') else dtypes.float32
             ).triu(start_pos+1).realize()
             mask = Tensor.full(
-                 (1, 1, seqlen, start_pos + seqlen),
+                (1, 1, seqlen, start_pos + seqlen),
                 float("-inf"),
                 dtype = dtypes.float16 if getenv('FP16') else dtypes.float32
             ).triu(start_pos+1).realize()
