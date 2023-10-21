@@ -12,3 +12,5 @@ build/
 dist/
 townhall.egg-info/
 logs/
+
+app/models/llama/weights/LLaMa/**
