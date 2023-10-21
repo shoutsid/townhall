@@ -2,7 +2,7 @@ from pathlib import Path
 import functools, sys, argparse, json, os
 import numpy as np
 np.set_printoptions(linewidth=200)
-from typing import Optional, Tuple, Dict
+from typing import Tuple, Dict
 
 from tinygrad.helpers import Timing, DEBUG, dtypes, CI
 from tinygrad.ops import Device
