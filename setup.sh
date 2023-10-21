@@ -1,3 +1,7 @@
+# Incase we ever decide to use lfs for the models
+git lfs install
+git lfs pull
+
 # Not in a virtual environment, do we need to create one?
 if [ ! -d ".venv" ]; then
     echo "Creating virtual environment"
@@ -12,8 +16,19 @@ fi
 
 pip install -r ./requirements.txt
 
-git lfs install
-git lfs pull
+cd ext/tinygrad
+python3 -m pip install -e .
+
+# For llama + tinygrad on Mac Metal GPU
+## check if root user, if not install pocl-opencl-icd as sudo
+# if [ "$EUID" -ne 0 ]; then
+#     echo "Not root user, installing pocl-opencl-icd as sudo"
+#     sudo apt install -y pocl-opencl-icd
+# else
+#     echo "Root user, installing pocl-opencl-icd"
+#     apt install -y pocl-opencl-icd
+# fi
+
 
 # python -m fastchat.serve.controller
 # python -m fastchat.serve.model_worker --model-path chatglm2-6b
