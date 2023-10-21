@@ -13,3 +13,4 @@ exclude_paths:
   - "docs/**"
   - "townhall.egg-info/**"
   - "**/__init__.py"
+  - "**/README.md"

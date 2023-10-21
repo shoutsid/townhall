@@ -108,3 +108,6 @@ sentencepiece
 # pyobjc-framework-Metal
 # pyobjc-framework-Cocoa
 # pyobjc-framework-libdispatch
+
+# required for gpt2 model
+tiktoken
