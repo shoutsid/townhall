@@ -96,8 +96,15 @@ yarl==1.9.2
 zipp==3.17.0
 
 
-tinygrad
 matplotlib
 scikit-learn
 torch
 tensorboard
+
+# llama tinygrad integration requirements
+sentencepiece
+
+# Used for Mac's Metal GPU support
+# pyobjc-framework-Metal
+# pyobjc-framework-Cocoa
+# pyobjc-framework-libdispatch

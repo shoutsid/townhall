@@ -1,0 +1,3 @@
+[submodule "ext/tinygrad"]
+	path = ext/tinygrad
+	url = https://github.com/tinygrad/tinygrad/
