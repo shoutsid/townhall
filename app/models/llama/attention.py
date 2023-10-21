@@ -33,7 +33,16 @@ class Attention:
         wo (Linear): Linear layer for output projection.
 
     Methods:
-        __call__(self, x: Tensor, cache_k: Optional[Tensor], cache_v: Optional[Tensor], start_pos: int, freqs_cis: Tensor, mask: Optional[Tensor], jit_ctx: Optional[Dict[Variable, int]] = None) -> Tuple[Tensor, Tensor, Tensor]:
+        __call__(
+            self,
+            x: Tensor,
+            cache_k: Optional[Tensor],
+            cache_v: Optional[Tensor],
+            start_pos: int,
+            freqs_cis: Tensor,
+            mask: Optional[Tensor],
+            jit_ctx: Optional[Dict[Variable, int]] = None
+        ) -> Tuple[Tensor, Tensor, Tensor]:
             Apply multi-head attention to the input sequence `x`.
     """
 
@@ -48,7 +57,16 @@ class Attention:
         self.wv = linear(dim, self.n_kv_heads * self.head_dim, bias=False)
         self.wo = linear(self.n_heads * self.head_dim, dim, bias=False)
 
-    def __call__(self, x:Tensor, cache_k:Optional[Tensor], cache_v:Optional[Tensor], start_pos:int, freqs_cis:Tensor, mask:Optional[Tensor], jit_ctx:Optional[Dict[Variable,int]]=None) -> Tuple[Tensor, Tensor, Tensor]:
+    def __call__(
+        self,
+        x: Tensor,
+        cache_k: Optional[Tensor],
+        cache_v: Optional[Tensor],
+        start_pos: int,
+        freqs_cis: Tensor,
+        mask: Optional[Tensor],
+        jit_ctx: Optional[Dict[Variable, int]] = None
+    ) -> Tuple[Tensor, Tensor, Tensor]:
         """
         Apply multi-head attention to the input sequence `x`.
 
@@ -85,5 +103,8 @@ class Attention:
 
         cache_k, cache_v = keys, values
         keys, values = repeat_kv(keys, self.n_rep).realize(), repeat_kv(values, self.n_rep).realize()
-        attn = Tensor.scaled_dot_product_attention(xq.transpose(1, 2), keys.transpose(1, 2), values.transpose(1, 2), mask).transpose(1, 2).reshape(bsz, seqlen, -1)
+        attn = (Tensor.scaled_dot_product_attention(xq.transpose(1, 2), keys.transpose(1, 2), values.transpose(1, 2), mask)
+                .transpose(1, 2)
+                .reshape(bsz, seqlen, -1))
+
         return self.wo(attn).realize(), cache_k.realize(), cache_v.realize()

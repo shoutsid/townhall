@@ -4,7 +4,7 @@ Utilities for the llama model.
 
 from pathlib import Path
 import json
-from typing import List
+from typing import List, Dict
 from typing import Tuple
 from tinygrad.tensor import Tensor
 from tinygrad.ops import Device
@@ -20,7 +20,6 @@ def precompute_freqs_cis(dim: int, end: int, theta: float = 10000.0):
     """
     Precomputes the frequencies for the complex exponential used in the
     `precompute_cis` function.
-     https://github.com/facebookresearch/llama/blob/1076b9c51c77ad06e9d7ba8a4c6df775741732bd/llama/model.py#L47
 
     Args:
         dim (int): The dimension of the tensor to be transformed.
@@ -29,6 +28,8 @@ def precompute_freqs_cis(dim: int, end: int, theta: float = 10000.0):
 
     Returns:
         Tensor: A tensor of precomputed frequencies for the complex exponential.
+            The tensor has shape (1, end, 1, dim//2, 2).
+            The last dimension contains the cosine and sine values of the frequencies.
     """
     freqs = 1.0 / (theta ** (Tensor.arange(0, dim, 2)[:(dim // 2)] / dim))
     freqs = Tensor.arange(end).unsqueeze(dim=1)*freqs.unsqueeze(dim=0)
@@ -65,6 +66,22 @@ def apply_rotary_emb(xq: Tensor, xk: Tensor, freqs_cis: Tensor) -> Tuple[Tensor,
 
     Returns:
         A tuple of two tensors, each of shape (batch_size, num_heads, seq_len * head_dim * 2).
+
+    This function applies rotary embeddings to the input tensors xq and xk using the given frequency tensor freqs_cis.
+    The rotary embeddings are applied by multiplying the input tensors with complex-valued sinusoids, which are
+    generated from the frequency tensor. The resulting tensors are flattened along the last dimension and returned
+    as a tuple of two tensors.
+
+    Note that the input tensors xq and xk should have the same shape, and the frequency tensor freqs_cis should have
+    the same shape as the input tensors with an additional last dimension of size 2.
+
+    Example:
+        >>> xq = torch.randn(2, 4, 5, 6)
+        >>> xk = torch.randn(2, 4, 5, 6)
+        >>> freqs_cis = torch.randn(2, 4, 5, 6, 2)
+        >>> out_q, out_k = apply_rotary_emb(xq, xk, freqs_cis)
+        >>> print(out_q.shape, out_k.shape)
+        torch.Size([2, 4, 60]) torch.Size([2, 4, 60])
     """
     assert freqs_cis.shape[1] == xq.shape[1] and freqs_cis.shape[1] == xk.shape[
         1], f"freqs_cis shape mismatch {freqs_cis.shape} xq:{xq.shape} xk:{xk.shape}"
@@ -89,6 +106,12 @@ def repeat_kv(x: Tensor, n_rep: int) -> Tensor:
 
     Returns:
         Tensor: The output tensor of shape (batch_size, seq_len, n_kv_heads * n_rep, head_dim).
+
+    Example:
+        >>> x = torch.randn(2, 3, 4, 5)
+        >>> y = repeat_kv(x, 2)
+        >>> y.shape
+        torch.Size([2, 3, 8, 5])
     """
     bs, seqlen, n_kv_heads, head_dim = x.shape
     if n_rep == 1:
@@ -96,7 +119,7 @@ def repeat_kv(x: Tensor, n_rep: int) -> Tensor:
     return x[:, :, :, None, :].expand(bs, seqlen, n_kv_heads, n_rep, head_dim).reshape(bs, seqlen, n_kv_heads * n_rep, head_dim)
 
 
-def concat_weights(models: List) -> dict:
+def concat_weights(models: List) -> Dict:
     """
     Concatenates the weights of multiple models.
 

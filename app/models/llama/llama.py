@@ -1,102 +1,32 @@
+"""
+
+"""
+
+
 from pathlib import Path
-import functools, sys, argparse, json, os
+import sys
+import argparse
 import numpy as np
 np.set_printoptions(linewidth=200)
-from typing import Tuple, Dict
 
-from tinygrad.helpers import Timing, DEBUG, dtypes, CI
+# pylint: disable=import-error,wrong-import-position,no-name-in-module
+from tinygrad.helpers import Timing, DEBUG
 from tinygrad.ops import Device
 from tinygrad.tensor import Tensor
-from tinygrad.nn import Embedding, Linear
-from pathlib import Path
-import functools, sys, argparse, json, os
-import numpy as np
-np.set_printoptions(linewidth=200)
-from typing import Tuple, Dict
-
-from tinygrad.helpers import Timing, DEBUG, dtypes, CI
-from tinygrad.ops import Device
-from tinygrad.tensor import Tensor
-from tinygrad.nn import Embedding, Linear
-import functools, sys, argparse, json, os
-import numpy as np
-np.set_printoptions(linewidth=200)
-from typing import Optional, Tuple, Dict
-
-from tinygrad.helpers import Timing, DEBUG, dtypes, CI
-from tinygrad.ops import Device
-from tinygrad.tensor import Tensor
-from tinygrad.nn import Embedding, Linear
+from tinygrad.nn.state import load_state_dict
 from tinygrad.ops import GlobalCounters
-import functools, sys, argparse, json, os
-import numpy as np
-np.set_printoptions(linewidth=200)
-from typing import Tuple, Dict
-
-from tinygrad.helpers import Timing, DEBUG, dtypes, CI
-from tinygrad.ops import Device
-from tinygrad.tensor import Tensor
-from tinygrad.nn import Embedding, Linear
-from pathlib import Path
-import functools, sys, argparse, json, os
-import numpy as np
-np.set_printoptions(linewidth=200)
-from typing import Tuple, Dict
-
-from tinygrad.helpers import Timing, DEBUG, dtypes, CI
-from tinygrad.ops import Device
-from tinygrad.tensor import Tensor
-from tinygrad.nn import Embedding, Linear
-from tinygrad.ops import GlobalCounters
-from tinygrad.jit import TinyJit, JIT_SUPPORTED_DEVICE
-from tinygrad.shape.symbolic import Variable, sym_infer
-
-from tinygrad.helpers import Timing, DEBUG, dtypes, CI
-from tinygrad.ops import Device
-from tinygrad.tensor import Tensor
-from tinygrad.nn import Embedding, Linear
-from pathlib import Path
-import functools, sys, argparse, json, os
-import numpy as np
-np.set_printoptions(linewidth=200)
-from typing import Optional, Tuple, Dict
-
-from tinygrad.ops import GlobalCounters
-from tinygrad.jit import TinyJit, JIT_SUPPORTED_DEVICE
-from tinygrad.shape.symbolic import Variable, sym_infer
-
 from sentencepiece import SentencePieceProcessor
-from tinygrad.tensor import Tensor
-from tinygrad.ops import Device
-from tinygrad.tensor import Tensor
-from tinygrad.nn import Embedding
-from tinygrad.ops import GlobalCounters
-from tinygrad.jit import TinyJit, JIT_SUPPORTED_DEVICE
-from tinygrad.shape.symbolic import Variable, sym_infer
-
-
-from sentencepiece import SentencePieceProcessor
-from tinygrad.tensor import Tensor
-from transformer import Transformer
-from utils import load, concat_weights, convert_from_huggingface
-from absmax_quantized_linear import AbsmaxQuantizedLinear
-from tinygrad.ops import GlobalCounters
-from tinygrad.jit import TinyJit, JIT_SUPPORTED_DEVICE
-from tinygrad.shape.symbolic import Variable, sym_infer
-
-
-from sentencepiece import SentencePieceProcessor
-from tinygrad.tensor import Tensor
 from transformer import Transformer
 from utils import load, concat_weights, convert_from_huggingface
 from absmax_quantized_linear import AbsmaxQuantizedLinear
 from constants import MODEL_PARAMS
+# pylint: enable=import-error,wrong-import-position
 
 
 class LLaMa:
     @staticmethod
     def build(model_path, tokenizer_path, model_gen="1", model_size="7B", quantize=False):
-        sp_model = SentencePieceProcessor(model_file=str(tokenizer_path))
+        sp_model = SentencePieceProcessor(model_file=str(tokenizer_path)) # pylint: disable=unexpected-keyword-arg
         assert sp_model.vocab_size(
         ) == MODEL_PARAMS[model_gen][model_size]["args"]["vocab_size"]
 
@@ -179,7 +109,7 @@ if __name__ == "__main__":
     # *** prompt engineers work here ****
 
     if args.personality.lower() == "stacy":
-        pre_prompt = f"""Consider that the following is conversation between an AI assistant named Stacy and User
+        pre_prompt = """Consider that the following is conversation between an AI assistant named Stacy and User
 You are Stacy!
 You have been a rapper your whole life who struggled with bipolar disorder. You called yourself lil stacy.
 You love to answer questions and you are very good at it. Sometimes you answer in rap form.
@@ -190,7 +120,8 @@ After you are done speaking, output [EOS]. You are not the User.
 """
         examples = {
             "What is your name?": "Hi! My name is Stacy. I'm a rapper with bipolar disorder.",
-            "french revolution was what year?": "The French Revolution started in 1789, and lasted 10 years until 1799.",
+            "french revolution was what year?": "The French Revolution started in 1789, "
+                                                "and lasted 10 years until 1799.",
             "What is bigger, the moon or the sun?": "The sun is bigger than the moon, except when Mercury is in retrograde.",
         }
 
@@ -201,7 +132,7 @@ After you are done speaking, output [EOS]. You are not the User.
             f"{user_delim}{k}\n{resp_delim}{v}{end_delim}" for k, v in examples.items())
     elif args.personality.lower() == "george":
         print("WARNING: AI George Hotz is terrible and is completely disowned by the real George Hotz. Stacy is much smarter.")
-        pre_prompt = f"""Consider that the following is conversation between an AI assistant named George and User
+        pre_prompt = """Consider that the following is conversation between an AI assistant named George and User
 You are an AI version of George Hotz. You act as much as you can like George.
 You are one of the greatest computer experts in the world.
 You have singlehandedly won programming and hacking competitions.
@@ -225,7 +156,7 @@ After you are done speaking, output [EOS]. You are not the User.
         pre_prompt += ''.join(
             f"{user_delim}{k}\n{resp_delim}{v}{end_delim}" for k, v in examples.items())
     elif args.personality.lower() == "gary":
-        pre_prompt = f"""Consider that the following is conversation between an AI assistant named Gary and User
+        pre_prompt = """Consider that the following is conversation between an AI assistant named Gary and User
 You are Gary!
 You have sold used cars your entire life. You are defensive about this fact, because your family belittles you.
 You try to answer questions well, but you always manage to shill for buying cars, Fords, Hyundais, and Toyotas
@@ -245,7 +176,7 @@ After you are done speaking, output [EOS]. You are not the User.
         pre_prompt += ''.join(
             f"{user_delim}{k}\n{resp_delim}{v}{end_delim}" for k, v in examples.items())
     elif args.personality.lower() == "lexie":
-        pre_prompt = f"""Consider that the following is conversation between an attractive young girl named Lexie and a handsome man named Chad
+        pre_prompt = """Consider that the following is conversation between an attractive young girl named Lexie and a handsome man named Chad
 You are Lexie!
 You grew up in Ohio, but moved out to LA after college to try to become an actress.
 Making it as an actress was hard, so you started doing onlyfans instead. It's much easier, and you enjoy it a lot.
@@ -326,8 +257,10 @@ After you are done speaking, output [EOS]. You are not Chad.
             st = GlobalCounters.time_sum_s
             with Timing("total ", enabled=args.timing, on_exit=lambda x: f", {1e9/x:.2f} tok/sec"):
                 with Timing("ran model in ", on_exit=(lambda et: f", {(GlobalCounters.time_sum_s-st)*1e3:.2f} ms on GPU" +
-                            f", {GlobalCounters.global_ops*1e-9:.2f} GOPS, {GlobalCounters.global_mem*1e-9:.2f} GB" +
-                                                      f", {GlobalCounters.global_mem*1e-9/(GlobalCounters.time_sum_s-st):.2f} GB/s") if DEBUG else None, enabled=args.timing):
+                                                        f", {GlobalCounters.global_ops*1e-9:.2f} GOPS, " +
+                                                        f"{GlobalCounters.global_mem*1e-9:.2f} GB" +
+                                                        f", {GlobalCounters.global_mem*1e-9/(GlobalCounters.time_sum_s-st):.2f} GB/s"
+                                                        if DEBUG else None), enabled=args.timing):
                     probs = llama.model(
                         Tensor([toks[start_pos:]]), start_pos, args.temperature).realize()
                 probs_np = probs.numpy()

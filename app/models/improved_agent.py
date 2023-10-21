@@ -38,8 +38,8 @@ class ImprovedAgent:
         self.policy_net: DQN = DQN(num_features).to(self.device)
         self.target_net.load_state_dict(self.policy_net.state_dict())
         self.target_net.eval()
-        self.optimizer = optim.RMSprop(self.policy_net.parameters())
-        self.memory = ReplayMemory(10000)
+        self.optimizer: optim.RMSprop = optim.RMSprop(self.policy_net.parameters())
+        self.memory: ReplayMemory = ReplayMemory(10000)
         self.previous_loss: List[float] = [0] * num_tasks
 
     def observe(self, task: int) -> Tuple[float, float]:
