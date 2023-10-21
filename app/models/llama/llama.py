@@ -12,12 +12,64 @@ from pathlib import Path
 import functools, sys, argparse, json, os
 import numpy as np
 np.set_printoptions(linewidth=200)
+from typing import Tuple, Dict
+
+from tinygrad.helpers import Timing, DEBUG, dtypes, CI
+from tinygrad.ops import Device
+from tinygrad.tensor import Tensor
+from tinygrad.nn import Embedding, Linear
+import functools, sys, argparse, json, os
+import numpy as np
+np.set_printoptions(linewidth=200)
 from typing import Optional, Tuple, Dict
 
 from tinygrad.helpers import Timing, DEBUG, dtypes, CI
 from tinygrad.ops import Device
 from tinygrad.tensor import Tensor
 from tinygrad.nn import Embedding, Linear
+from tinygrad.ops import GlobalCounters
+import functools, sys, argparse, json, os
+import numpy as np
+np.set_printoptions(linewidth=200)
+from typing import Tuple, Dict
+
+from tinygrad.helpers import Timing, DEBUG, dtypes, CI
+from tinygrad.ops import Device
+from tinygrad.tensor import Tensor
+from tinygrad.nn import Embedding, Linear
+from pathlib import Path
+import functools, sys, argparse, json, os
+import numpy as np
+np.set_printoptions(linewidth=200)
+from typing import Tuple, Dict
+
+from tinygrad.helpers import Timing, DEBUG, dtypes, CI
+from tinygrad.ops import Device
+from tinygrad.tensor import Tensor
+from tinygrad.nn import Embedding, Linear
+from tinygrad.ops import GlobalCounters
+from tinygrad.jit import TinyJit, JIT_SUPPORTED_DEVICE
+from tinygrad.shape.symbolic import Variable, sym_infer
+
+from tinygrad.helpers import Timing, DEBUG, dtypes, CI
+from tinygrad.ops import Device
+from tinygrad.tensor import Tensor
+from tinygrad.nn import Embedding, Linear
+from pathlib import Path
+import functools, sys, argparse, json, os
+import numpy as np
+np.set_printoptions(linewidth=200)
+from typing import Optional, Tuple, Dict
+
+from tinygrad.ops import GlobalCounters
+from tinygrad.jit import TinyJit, JIT_SUPPORTED_DEVICE
+from tinygrad.shape.symbolic import Variable, sym_infer
+
+from sentencepiece import SentencePieceProcessor
+from tinygrad.tensor import Tensor
+from tinygrad.ops import Device
+from tinygrad.tensor import Tensor
+from tinygrad.nn import Embedding
 from tinygrad.ops import GlobalCounters
 from tinygrad.jit import TinyJit, JIT_SUPPORTED_DEVICE
 from tinygrad.shape.symbolic import Variable, sym_infer

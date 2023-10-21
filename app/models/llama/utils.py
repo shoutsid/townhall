@@ -152,10 +152,12 @@ def convert_from_huggingface(weights, model):
     """
     keymap = {
         "model.embed_tokens.weight": "tok_embeddings.weight",
-        **{f"model.layers.{l}.input_layernorm.weight": f"layers.{l}.attention_norm.weight" for l in range(len(model.layers))},
+        **{f"model.layers.{layer_index}.input_layernorm.weight": f"layers.{layer_index}.attention_norm.weight" for layer_index in range(len(model.layers))},
         **{f"model.layers.{l}.self_attn.{x}_proj.weight": f"layers.{l}.attention.w{x}.weight" for x in ["q", "k", "v", "o"] for l in range(len(model.layers))},
         **{f"model.layers.{l}.post_attention_layernorm.weight": f"layers.{l}.ffn_norm.weight" for l in range(len(model.layers))},
-        **{f"model.layers.{layer_index}.mlp.{x}_proj.weight": f"layers.{layer_index}.feed_forward.w{y}.weight" for x, y in {"gate": "1", "down": "2", "up": "3"}.items() for layer_index in range(len(model.layers))},
+        **{f"model.layers.{layer_index}.mlp.{x}_proj.weight": f"layers.{layer_index}.feed_forward.w{y}.weight"
+           for x, y in {"gate": "1", "down": "2", "up": "3"}.items()
+           for layer_index in range(len(model.layers))},
         "model.norm.weight": "norm.weight",
         "lm_head.weight": "output.weight",
     }
