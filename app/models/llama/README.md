@@ -1,4 +1,31 @@
+This README documents the first generated conversation between an AI assistant named Stacy and a user, facilitated by the integration of LLaMa and TinyGrad within the Townhall application. The conversation illuminates several aspects of the system that are currently under review for improvement, including CPU vs GPU backend usage, the generation of irrelevant answers, and buffer limit issues.
+
+**Backend Usage**
+
+The logs indicated that the GPU backend was used for inference. However, it's worth noting that despite this message, the system actually utilized the CPU for inference. This discrepancy is being looked into for clarification and potential optimization.
+
+**Irrelevant Output**
+
+In the conversation, the user's question about writing a small Python script dealing with complex numbers received an irrelevant output. The system generated an exception message and a code snippet that doesn't align with the query. This issue is under review to improve the system's understanding of context and relevance in responses.
+
+**Buffer Limit Exceeded**
+
+During the conversation, the system also encountered a buffer limit issue, triggering an AssertionError. This is a known, logged issue that we are working on. Future updates may include strategy classes to better manage buffer limits and prevent such exceptions.
+
+**Llama Integration**
+
+To start the Llama module, run the following commands:
+
+```bash
+pip install -r requirements.txt
+cd app/models/llama/weights/
+bash pull_llama.sh
+cd ../../../..
+python3 app/models/llama/llama.py
 ```
+
+
+```bash
 (.venv) james@Sid-Desktop:/mnt/e/workspace/townhall$ /mnt/e/workspace/townhall/.venv/bin/python /mnt/e/workspace/townhall/app/models/llama/llama.py
 using GPU backend
 using LLaMA-7B model
