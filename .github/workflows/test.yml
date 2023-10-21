@@ -1,6 +1,6 @@
 name: Test
 
-on: [push, pull_request]
+on: [pull_request]
 
 env:
   OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
@@ -10,12 +10,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
+    - name: Checkout Code
       uses: actions/checkout@v4.1.1
       with:
         submodules: true
 
-    - name: Pull & update submodules recursively
+    - name: Pull & Update Submodules Recursively
       run: |
         git submodule update --init --recursive
         git submodule update --recursive --remote
@@ -25,8 +25,7 @@ jobs:
       with:
         python-version: 3.10.13
 
-    - name: Install dependencies
-      run: pip install -r requirements.txt
-
-    - name: Run tests
+    - name: Install Dependencies
+      run: pip install -r requirements.txt && pip install -e ext/tinygrad
+    - name: Run Tests
       run: pytest
