@@ -62,7 +62,7 @@ Before you begin, ensure you have met the following requirements:
 ### Docker Compose
 
 ```bash
-git clone --recurse-submodules
+git clone --recurse-submodules https://github.com/shoutsid/townhall.git
 cd townhall
 docker compose up -d
 docker compose exec townhall bash
