@@ -14,7 +14,7 @@ class FeedForward:
         dim (int): The input dimension.
         hidden_dim (int): The hidden dimension.
         multiple_of (int): The output dimension will be a multiple of this value.
-        linear (nn.Module): The linear layer module to use. Default is torch.nn.Linear.
+        linear (nn.Module): The linear layer module to use. Default is tinygrad.nn.Linear.
         ffn_dim_multiplier (float): A multiplier for the hidden dimension. Default is None.
 
     Attributes:
