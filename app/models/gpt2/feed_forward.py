@@ -12,7 +12,7 @@ class FeedForward: # pylint: disable=too-few-public-methods
     Args:
         dim (int): The input dimension of the layer.
         hidden_dim (int): The hidden dimension of the layer.
-        linear (nn.Module): The linear layer module to use. Default is `torch.nn.Linear`.
+        linear (nn.Module): The linear layer module to use. Default is `tingrad.nn.Linear`.
 
     Attributes:
         c_fc (nn.Module): The linear layer module for the feedforward computation.
@@ -24,10 +24,10 @@ class FeedForward: # pylint: disable=too-few-public-methods
 
     Example:
         >>> ff = FeedForward(dim=512, hidden_dim=2048)
-        >>> x = torch.randn(1, 512)
+        >>> x = randn(1, 512)
         >>> y = ff(x)
         >>> y.shape
-        torch.Size([1, 512])
+        Size([1, 512])
     """
     def __init__(self, dim, hidden_dim, linear=Linear):
         self.c_fc = linear(dim, hidden_dim, bias=True)
