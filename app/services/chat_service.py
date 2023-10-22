@@ -17,7 +17,6 @@ class ChatService:
                 name="assistant",
                 system_message=("For coding tasks, only use the functions you have been provided with. "
                                 "You argument should follow json format. Reply TERMINATE when the task is done."),
-                ```
                 llm_config={"config_list": config_list, "functions": function_map},
             )
         else:
