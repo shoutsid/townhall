@@ -33,6 +33,7 @@ class Whisper:
         """
         return self.decoder(tokens, self.encoder(mel))
 
+
 if __name__ == "__main__":
     import sys
     import multiprocessing
