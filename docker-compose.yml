@@ -1,0 +1,9 @@
+version: '2.23'
+
+services:
+  townhall:
+    build:
+      context: .
+      dockerfile: .devcontainer/Dockerfile
+    volumes:
+      - .:/app

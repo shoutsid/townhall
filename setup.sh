@@ -16,10 +16,9 @@
 #   source .venv/bin/activate
 # fi
 
+pip install --upgrade pip
 pip install -r ./requirements.txt
-
-cd ext/tinygrad
-python3 -m pip install -e .
+python3 -m pip install -e ext/tinygrad
 
 # For llama + tinygrad on Mac Metal GPU
 ## check if root user, if not install pocl-opencl-icd as sudo
