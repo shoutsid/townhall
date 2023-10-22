@@ -54,11 +54,11 @@ class Transformer:
         Postprocesses the output of the transformer model.
 
         Args:
-            x (torch.Tensor): The input tensor to the transformer model.
+            x (Tensor): The input tensor to the transformer model.
             temperature (float, optional): The temperature to use for softmax. If None, no temperature scaling is applied.
 
         Returns:
-            torch.Tensor: The postprocessed output tensor.
+            Tensor: The postprocessed output tensor.
         """
         logits = self.output(self.norm(x))
         if temperature is not None:
