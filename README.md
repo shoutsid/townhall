@@ -94,8 +94,17 @@ export OPENAI_API_KEY=<your-api-key>
 python3 main.py
 ```
 
-### LLaMa Integration
+### Planner
 
+To start the planner that can execute shell scripts and run python,
+run the following command:
+
+```bash
+export OPENAI_API_KEY=<your-api-key>
+python3 app/models/planner.py
+```
+
+### LLaMa Integration
 To start the Llama module, run the following commands:
 
 ```bash
