@@ -36,7 +36,7 @@ class UserAgent(UserProxyAgent):
           None
         """
         self.current_message = message
-        self.message_event.set()
+
 
     def get_human_input(self, prompt: str) -> str:
         """
@@ -48,7 +48,6 @@ class UserAgent(UserProxyAgent):
         Returns:
           str: The message entered by the user.
         """
-        self.message_event.wait()  # Block until a message is available
+        self.set_current_message(input(prompt))
         message = self.current_message
-        self.message_event.clear()  # Reset the event for the next message
         return message

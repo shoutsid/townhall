@@ -23,25 +23,14 @@ def test_set_current_message(user_agent):
     assert user_agent.current_message == new_message
 
 
-def test_get_human_input(user_agent):
+def test_get_human_input(user_agent, mocker):
     """Test the get_human_input method."""
     prompt = "Enter a message: "
-
-    # Start a thread to simulate user input
-    import threading
-
-    def simulate_user_input():
-        user_agent.set_current_message("User input")
-
-    input_thread = threading.Thread(target=simulate_user_input)
-    input_thread.start()
-
+    # Mock the input function to return "User input"
+    mocker.patch('builtins.input', return_value='User input')
     # Check if the get_human_input method returns the user input
     user_input = user_agent.get_human_input(prompt)
     assert user_input == "User input"
-
-    # Wait for the input thread to finish
-    input_thread.join()
 
 
 if __name__ == "__main__":

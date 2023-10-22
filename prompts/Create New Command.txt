@@ -19,6 +19,6 @@ class agent_interactions(Extensions):
             self.commands = {
                 "Ask AGiXT": self.ask_the_agent
             }
-    async def ask_the_agent(self, prompt: str) -> List[str]:       
+    async def ask_the_agent(self, prompt: str) -> List[str]:
         return await agixt().run(prompt, commands_enabled=False)
 ```
