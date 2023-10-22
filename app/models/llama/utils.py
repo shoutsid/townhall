@@ -60,9 +60,9 @@ def apply_rotary_emb(xq: Tensor, xk: Tensor, freqs_cis: Tensor) -> Tuple[Tensor,
     Applies rotary embeddings to the input tensors xq and xk using the given frequency tensor freqs_cis.
 
     Args:
-        xq (torch.Tensor): The query tensor of shape (batch_size, num_heads, seq_len, head_dim).
-        xk (torch.Tensor): The key tensor of shape (batch_size, num_heads, seq_len, head_dim).
-        freqs_cis (torch.Tensor): The frequency tensor of shape (batch_size, num_heads, seq_len, head_dim, 2).
+        xq (Tensor): The query tensor of shape (batch_size, num_heads, seq_len, head_dim).
+        xk (Tensor): The key tensor of shape (batch_size, num_heads, seq_len, head_dim).
+        freqs_cis (Tensor): The frequency tensor of shape (batch_size, num_heads, seq_len, head_dim, 2).
 
     Returns:
         A tuple of two tensors, each of shape (batch_size, num_heads, seq_len * head_dim * 2).
@@ -76,12 +76,12 @@ def apply_rotary_emb(xq: Tensor, xk: Tensor, freqs_cis: Tensor) -> Tuple[Tensor,
     the same shape as the input tensors with an additional last dimension of size 2.
 
     Example:
-        >>> xq = torch.randn(2, 4, 5, 6)
-        >>> xk = torch.randn(2, 4, 5, 6)
-        >>> freqs_cis = torch.randn(2, 4, 5, 6, 2)
+        >>> xq = randn(2, 4, 5, 6)
+        >>> xk = randn(2, 4, 5, 6)
+        >>> freqs_cis = randn(2, 4, 5, 6, 2)
         >>> out_q, out_k = apply_rotary_emb(xq, xk, freqs_cis)
         >>> print(out_q.shape, out_k.shape)
-        torch.Size([2, 4, 60]) torch.Size([2, 4, 60])
+        Size([2, 4, 60]) Size([2, 4, 60])
     """
     assert freqs_cis.shape[1] == xq.shape[1] and freqs_cis.shape[1] == xk.shape[
         1], f"freqs_cis shape mismatch {freqs_cis.shape} xq:{xq.shape} xk:{xk.shape}"
@@ -108,10 +108,10 @@ def repeat_kv(x: Tensor, n_rep: int) -> Tensor:
         Tensor: The output tensor of shape (batch_size, seq_len, n_kv_heads * n_rep, head_dim).
 
     Example:
-        >>> x = torch.randn(2, 3, 4, 5)
+        >>> x = randn(2, 3, 4, 5)
         >>> y = repeat_kv(x, 2)
         >>> y.shape
-        torch.Size([2, 3, 8, 5])
+        Size([2, 3, 8, 5])
     """
     bs, seqlen, n_kv_heads, head_dim = x.shape
     if n_rep == 1:
