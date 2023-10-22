@@ -49,7 +49,7 @@ class ResidualAttentionBlock:
                 The attention mask tensor of shape `(batch_size, seq_len, seq_len)`.
 
         Returns:
-            torch.Tensor: The output tensor of shape `(batch_size, seq_len, hidden_size)`.
+            Tensor: The output tensor of shape `(batch_size, seq_len, hidden_size)`.
         """
         x = x + self.attn(self.attn_ln(x), mask=mask)
         if self.cross_attn is not None:
