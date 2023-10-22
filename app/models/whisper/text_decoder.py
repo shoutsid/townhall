@@ -27,13 +27,13 @@ class TextDecoder:
         Apply the transformer to the input sequence x.
 
         Args:
-            x (torch.Tensor):
+            x (Tensor):
                 Input sequence of shape (batch_size, seq_len).
-            xa (torch.Tensor):
+            xa (Tensor):
                 Additional input sequence of shape (batch_size, seq_len, hidden_size).
 
         Returns:
-            torch.Tensor: Output sequence of shape (batch_size, seq_len, vocab_size).
+            Tensor: Output sequence of shape (batch_size, seq_len, vocab_size).
         """
         offset = 0
         x = self.token_embedding(x) + self.positional_embedding[offset : offset + x.shape[-1]]
