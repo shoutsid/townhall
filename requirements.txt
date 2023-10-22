@@ -111,3 +111,10 @@ sentencepiece
 
 # required for gpt2 model
 tiktoken
+
+# Required for whisper
+# requires apt-get install portaudio19-dev || brew install portaudio
+# WSL: You will most ;likely encounter an error when getting your microphone device.
+#   Follow this guide to fix it https://learn.microsoft.com/en-us/windows/wsl/connect-usb
+librosa
+pyaudio
