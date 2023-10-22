@@ -23,9 +23,9 @@ class RMSNorm:
         Applies the RSM normalization to the input tensor `x`.
 
         Args:
-            x (torch.Tensor): The input tensor to normalize.
+            x (Tensor): The input tensor to normalize.
 
         Returns:
-            torch.Tensor: The normalized tensor.
+            Tensor: The normalized tensor.
         """
         return (x * (x.pow(2).mean(-1, keepdim=True) + self.eps).rsqrt()) * self.weight
