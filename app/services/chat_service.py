@@ -1,6 +1,6 @@
+
 from app.agents.user_agent import UserAgent
 from autogen import AssistantAgent
-
 
 class ChatService:
     """
@@ -15,8 +15,8 @@ class ChatService:
         if assistant is None:
             self.assistant = AssistantAgent(
                 name="assistant",
-                llm_config={"config_list": config_list,
-                            "functions": function_map},
+                system_message="For coding tasks, only use the functions you have been provided with. You argument should follow json format. Reply TERMINATE when the task is done.",
+                llm_config={"config_list": config_list, "functions": function_map},
             )
         else:
             self.assistant = assistant
@@ -24,12 +24,12 @@ class ChatService:
         if user_proxy is None:
             self.user_proxy = UserAgent(
                 name="user_proxy",
-                human_input_mode="TERMINATE",
-                max_consecutive_auto_reply=0,
-                function_map=function_map,
+                is_termination_msg=lambda x: x.get("content", "") and x.get("content", "").rstrip().endswith("TERMINATE"),
+                max_consecutive_auto_reply=10
             )
         else:
             self.user_proxy = user_proxy
+
 
     def initiate_chat(self, message):
         """

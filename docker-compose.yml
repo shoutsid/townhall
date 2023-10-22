@@ -5,5 +5,8 @@ services:
     build:
       context: .
       dockerfile: .devcontainer/Dockerfile
+
+    # TODO: change this to be file specific and reorganize the dockerfile
     volumes:
       - .:/app
+    command: tail -f /dev/null

@@ -9,7 +9,9 @@ def main():
     """
     Main function for the townhall application.
     """
-    message = input("OpenAI Buddy, no functions yet. Planner deals with functions. \n " \
+    message = input("Basic OpenAI Buddy, no functions.\n " \
+                    "To use functions, run the models.planner.py in the app folder.\n" \
+                    "All PR's are welcome and features will be tracked & planned. \n" \
                     "Enter a message to send to the assistant: ")
     bud: Buddy = Buddy()
     while True:

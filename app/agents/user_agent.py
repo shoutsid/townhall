@@ -37,6 +37,7 @@ class UserAgent(UserProxyAgent):
         """
         self.current_message = message
 
+
     def get_human_input(self, prompt: str) -> str:
         """
         Blocks until a message is available, then returns it.

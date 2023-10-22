@@ -3,7 +3,7 @@ This module contains unit tests for the Buddy class.
 """
 
 from app.agents.buddy import Buddy, UserAgent, AssistantAgent
-from unittest.mock import Mock, patch
+from unittest.mock import patch
 # import os
 # import sys
 import unittest

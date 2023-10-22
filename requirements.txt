@@ -1,8 +1,13 @@
+pytest
+pytest-asyncio
+pytest-mock
 pyautogen==0.1.13
 matplotlib
 scikit-learn
 torch
 tensorboard
+streamlit
+ipython
 
 # llama tinygrad integration requirements
 sentencepiece

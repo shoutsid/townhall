@@ -59,6 +59,16 @@ Before you begin, ensure you have met the following requirements:
 
 ## 🛠️ Installation
 
+### Docker Compose
+
+```bash
+git clone --recurse-submodules
+cd townhall
+docker compose up -d
+docker compose exec townhall bash
+./setup.sh
+```
+
 ### For Linux
 
 ```bash
@@ -81,7 +91,7 @@ To start the basic buddy, run the following command:
 
 ```bash
 export OPENAI_API_KEY=<your-api-key>
-python main.py
+python3 main.py
 ```
 
 ### LLaMa Integration

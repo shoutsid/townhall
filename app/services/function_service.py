@@ -1,5 +1,18 @@
 import ast
+import json
 from app.helpers.function_registry import FunctionRegistry
+
+# Example dummy function hard coded to return the same weather
+# In production, this could be your backend API or an external API
+def get_current_weather(location, unit="fahrenheit"):
+    """Get the current weather in a given location"""
+    weather_info = {
+        "location": location,
+        "temperature": "72",
+        "unit": unit,
+        "forecast": ["sunny", "windy"],
+    }
+    return json.dumps(weather_info)
 
 
 class FunctionService:
@@ -25,6 +38,41 @@ class FunctionService:
 
     def __init__(self):
         self.registry = FunctionRegistry()
+        self.openai_functions_list = []
+        self.openai_functions_list.append(
+            {
+                "name": "python",
+                "description": "run cell in ipython and return the execution result.",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "cell": {
+                            "type": "string",
+                            "description": "Valid Python cell to execute.",
+                        }
+                    },
+                    "required": ["cell"],
+                },
+            }
+        )
+        self.openai_functions_list.append(
+            {
+                "name": "sh",
+                "description": "run a shell script and return the execution result.",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "script": {
+                            "type": "string",
+                            "description": "Valid shell script to execute.",
+                        }
+                    },
+                    "required": ["script"],
+                },
+            }
+        )
+
+
 
     def add_function(self, name, function_body):
         """
@@ -57,6 +105,8 @@ class FunctionService:
             raise SyntaxError(f"Invalid syntax in function body: {e}") from e
         new_func = local_scope[func_def.name]
         self.registry.add_function(name, new_func)
+        self.openai_functions_list.append({"name": name, "function_body": new_func})
+
 
         return f"Function '{name}' added!"
 
@@ -72,6 +122,10 @@ class FunctionService:
         Returns:
             Any: The return value of the executed function.
         """
+        function_body = self.registry.functions.get(name)
+        if not function_body:
+            return "Function not found."
+
         return self.registry.execute_function(name, *args, **kwargs)
 
     def add_multiple_functions(self, functions):

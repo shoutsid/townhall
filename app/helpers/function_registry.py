@@ -42,6 +42,40 @@ class FunctionRegistry:
         Initializes an empty FunctionRegistry object.
         """
         self.functions = {}
+        self.openai_functions_list = []
+        self.openai_functions_list.append(
+            {
+                "name": "python",
+                "description": "run cell in ipython and return the execution result.",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "cell": {
+                            "type": "string",
+                            "description": "Valid Python cell to execute.",
+                        }
+                    },
+                    "required": ["cell"]
+                }
+            }
+        )
+        self.openai_functions_list.append(
+            {
+                "name": "sh",
+                "description": "run a shell script and return the execution result.",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "script": {
+                            "type": "string",
+                            "description": "Valid shell script to execute.",
+                        }
+                    },
+                    "required": ["script"]
+                }
+            }
+        )
+
 
     def add_function(self, name, func):
         """
