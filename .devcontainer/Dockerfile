@@ -3,7 +3,7 @@ FROM python:3.8-slim-buster
 
 # Install dev apt packages
 RUN apt update && apt install -y git libasound-dev libportaudio2 \
-    libportaudiocpp0 portaudio19-dev build-essential
+    libportaudiocpp0 portaudio19-dev build-essential git
 
 # Set the working directory in the container to /app
 WORKDIR /app
@@ -14,6 +14,7 @@ COPY . /app
 # Install any needed packages specified in requirements.txt etc
 RUN pip3 install --upgrade pip
 RUN pip3 install -r ./requirements.txt
+RUN git submodule update --init --recursive
 RUN python3 -m pip install -e ext/tinygrad
 
 # Make port 80 available to the world outside this container
