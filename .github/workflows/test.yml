@@ -25,6 +25,9 @@ jobs:
       with:
         python-version: 3.10.13
 
+    - name: System Packages
+      run: sudo apt update && sudo apt install -y portaudio19-dev
+
     - name: Install Dependencies
       run: pip install -r requirements.txt && pip install -e ext/tinygrad
     - name: Run Tests
