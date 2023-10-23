@@ -74,14 +74,6 @@ def apply_rotary_emb(xq: Tensor, xk: Tensor, freqs_cis: Tensor) -> Tuple[Tensor,
 
     Note that the input tensors xq and xk should have the same shape, and the frequency tensor freqs_cis should have
     the same shape as the input tensors with an additional last dimension of size 2.
-
-    Example:
-        >>> xq = randn(2, 4, 5, 6)
-        >>> xk = randn(2, 4, 5, 6)
-        >>> freqs_cis = randn(2, 4, 5, 6, 2)
-        >>> out_q, out_k = apply_rotary_emb(xq, xk, freqs_cis)
-        >>> print(out_q.shape, out_k.shape)
-        Size([2, 4, 60]) Size([2, 4, 60])
     """
     assert freqs_cis.shape[1] == xq.shape[1] and freqs_cis.shape[1] == xk.shape[
         1], f"freqs_cis shape mismatch {freqs_cis.shape} xq:{xq.shape} xk:{xk.shape}"
