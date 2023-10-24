@@ -19,9 +19,7 @@ Townhall is a cutting-edge chatbot framework crafted in Python and grounded on t
 ### 🧱 The Autogen Foundation: The Bedrock of Innovation
 At its core, Townhall is built upon the Autogen framework, a pioneering platform for LLMs. Autogen enables the creation of agents that are not only customizable but also conversational. These agents can interact with each other, and seamlessly incorporate human inputs, setting the stage for more dynamic and intelligent dialogues.
 
-### 🎼 Advanced Agents: The Symphony Conductors with Function Orchestration
-Our advanced agents go beyond merely responding to user queries; they orchestrate multiple functions to provide a cohesive and engaging user experience. Think of them as the conductors of a grand symphony, where each instrument is a unique function or feature. They coordinate these functions to create a harmonious and effective dialogue, far outclassing traditional chatbots which often feel like disjointed sets of scripted responses.
-The advanced agents adapt and learn, making each conversation better than the last. They can switch between various modes, employing a blend of LLMs, human inputs, and specialized tools to deliver a personalized conversational experience.
+Our advanced agents go beyond merely responding to user queries; they orchestrate multiple functions to provide a cohesive and engaging user experience. Think of them as the conductors of a grand symphony, where each instrument is a unique function or feature. They coordinate these functions to create a harmonious and effective dialogue, far outclassing traditional chatbots which often feel like disjointed sets of scripted responses. The advanced agents adapt and learn, making each conversation better than the last. They can switch between various modes, employing a blend of LLMs, human inputs, and specialized tools to deliver a personalized conversational experience.
 
 ## Table of Contents
 
@@ -34,21 +32,6 @@ The advanced agents adapt and learn, making each conversation better than the la
 7. [Roadmap](#roadmap)
 8. [Credits](#credits)
 9. [License](#license)
-
-## 🌟 Features
-
-- **Planner**: The [planner](https://github.com/shoutsid/townhall/blob/main/app/agents/planner.py) initiate chats with the planner, and manage a registry of functions.
-- **Function Registry**: The [function registry](https://github.com/shoutsid/townhall/blob/main/app/helpers/function_registry.py) module manages a registry of functions, allowing users to add, execute, and list functions.
-- **Buddy**: The [buddy](https://github.com/shoutsid/townhall/blob/main/app/agents/buddy.py) module represents a chatbot that can initiate a chat between a user and an assistant agent.
-- **Settings**: The [settings](https://github.com/shoutsid/townhall/blob/main/app/settings.py) module loads environment variables and defines configurations for the application.
-- **User Agent**: The [user agent](https://github.com/shoutsid/townhall/blob/main/app/agents/user_agent.py) represents a user in the system and can send messages to other agents.
-- **Chat Service**: The [chat service](https://github.com/shoutsid/townhall/blob/main/app/services/chat_service.py) module handles the logic for initiating and managing chats between agents.
-- **Function Service**: The [function service](https://github.com/shoutsid/townhall/blob/main/app/services/function_service.py) module provides functionalities for executing specific tasks.
-- **Planner Service**: The [planner service](https://github.com/shoutsid/townhall/blob/main/app/services/planner_service.py) module aids in planning and sequencing tasks for the chatbot.
-- **Llama Integration**: The Llama module is integrated to provide advanced functionalities. To run Llama locally, follow these steps:
-    - Ensure you have all the required dependencies by running `pip install -r requirements.txt`.
-    - Fetch the necessary resources by running the `pull_llama.sh` script located in [app/models/llama/weights/](https://github.com/shoutsid/townhall/blob/main/app/models/llama/weights/LLaMa). Execute `bash app/models/llama/weights/LLaMa/pull_llama.sh`.
-    - To start Llama, run the following command: `python3 app/models/llama/llama.py`.
 
 ## 📝 Prerequisites
 
@@ -85,15 +68,6 @@ The easiest way to get setup on windows is to start playing is click below to us
 
 ## 🌐 Usage
 
-### Basic Buddy
-
-To start the basic buddy, run the following command:
-
-```bash
-export OPENAI_API_KEY=<your-api-key>
-python3 main.py
-```
-
 ### Planner
 
 To start the planner that can execute shell scripts and run python,
@@ -101,7 +75,7 @@ run the following command:
 
 ```bash
 export OPENAI_API_KEY=<your-api-key>
-python3 app/models/planner.py
+python3 townhall/models/planner.py
 ```
 
 ### LLaMa Integration
@@ -109,10 +83,10 @@ To start the Llama module, run the following commands:
 
 ```bash
 pip install -r requirements.txt
-cd app/models/llama/weights/
+cd townhall/models/llama/weights/
 bash pull_llama.sh
 cd ../../../..
-python3 app/models/llama/llama.py
+python3 townhall/models/llama/llama.py
 ```
 
 ### GPT-2 Integration
@@ -120,7 +94,7 @@ python3 app/models/llama/llama.py
 To start the GPT-2 module, run the following commands:
 
 ```bash
-python3 app/models/gpt2/gpt2.py
+python3 townhall/models/gpt2/gpt2.py
 ```
 
 ## 🤝 Contributing

@@ -1,2 +1,18 @@
+[metadata]
+license_file = "LICENSE"
+description-file = "README.md"
+
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+addopts = [
+    "--import-mode=importlib",
+]
+
+
+[tool.black]
+# https://github.com/psf/black
+line-length = 120
+exclude = "(.eggs|.git|.hg|.mypy_cache|.venv|_build|buck-out|build|dist)"
+
+ignore-init-module-imports = true

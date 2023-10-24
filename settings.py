@@ -35,3 +35,10 @@ else:
             "api_key": OPENAI_API_KEY,
         }
     ]
+
+LLM_CONFIG = {
+    "request_timeout": 60,
+    "seed": 42,
+    "config_list": CONFIG_LIST,
+    "temperature": 0,
+}

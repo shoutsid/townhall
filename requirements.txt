@@ -2,6 +2,7 @@ pytest
 pytest-asyncio
 pytest-mock
 pyautogen==0.1.13
+pyautogen[retrievechat]==0.1.13
 matplotlib
 scikit-learn
 torch
