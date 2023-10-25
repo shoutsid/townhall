@@ -4,7 +4,6 @@ which is responsible for managing group chat sessions between users and assistan
 """
 
 from typing import List, Dict, Callable
-# import autogen
 from autogen import GroupChat, GroupChatManager
 from townhall.agents.user_agent import RAGUserAgent
 from townhall.agents.utils import is_termination_msg
