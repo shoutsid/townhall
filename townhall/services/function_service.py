@@ -1,5 +1,6 @@
 import ast
 import json
+from typing import List
 from townhall.helpers.function_registry import FunctionRegistry
 
 # Example dummy function hard coded to return the same weather
@@ -37,44 +38,10 @@ class FunctionService:
     """
 
     def __init__(self):
-        self.registry = FunctionRegistry()
-        self.openai_functions_list = []
-        self.openai_functions_list.append(
-            {
-                "name": "python",
-                "description": "run cell in ipython and return the execution result.",
-                "parameters": {
-                    "type": "object",
-                    "properties": {
-                        "cell": {
-                            "type": "string",
-                            "description": "Valid Python cell to execute.",
-                        }
-                    },
-                    "required": ["cell"],
-                },
-            }
-        )
-        self.openai_functions_list.append(
-            {
-                "name": "sh",
-                "description": "run a shell script and return the execution result.",
-                "parameters": {
-                    "type": "object",
-                    "properties": {
-                        "script": {
-                            "type": "string",
-                            "description": "Valid shell script to execute.",
-                        }
-                    },
-                    "required": ["script"],
-                },
-            }
-        )
+        self.registry: FunctionRegistry = FunctionRegistry()
+        self.openai_functions_list: List = []
 
-
-
-    def add_function(self, name, function_body):
+    def add_function(self, name: str, function_body: str):
         """
         Adds a new function to the registry.
 
@@ -100,6 +67,7 @@ class FunctionService:
             func_def.name = name.split("(")[0].strip()
             code_obj = compile(ast_obj, "<string>", "exec")
             # pylint: disable-next=exec-used
+            # TODO: #63 Replace exec with a IPython equivalent
             exec(code_obj, None, local_scope)  # bandit: ignore:B102
         except SyntaxError as e:
             raise SyntaxError(f"Invalid syntax in function body: {e}") from e

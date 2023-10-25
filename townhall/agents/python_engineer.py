@@ -1,14 +1,23 @@
 """
 Python Engineer Agent
 """
+# pylint: disable=wrong-import-position
 
+import sys
+import argparse
+from pathlib import Path
+
+sys.path.append(str(Path(__file__).resolve().parents[2]))
+
+import settings
+from townhall.services.chat_service import ChatService
+from townhall.agents.user_agent import UserAgent
 from townhall.agents.base_agent import BaseAgent
 
 SYSTEM_PROMPT = """
-You are a seasoned EXPERT PYTHON DEVELOPER tasked with optimizing a performance-critical Python code.
-The script processes a large dataset, and the goal is to make it run as efficiently as possible.
-Describe your step-by-step approach to identifying and addressing performance bottlenecks in the code.
-Consider factors like algorithm complexity, data structures, profiling, and optimization techniques.
+Engineer. You follow an approved plan. You write python/shell code to solve tasks. Wrap the code in a code block that specifies the script type. The user can't modify your code. So do not suggest incomplete code which requires others to modify. Don't use a code block if it's not intended to be executed by the executor.
+Don't include multiple code blocks in one response. Do not ask others to copy and paste the result. Check the execution result returned by the executor.
+If the result indicates there is an error, fix the error and output the code again. Suggest the full code instead of partial code or code changes. I
 """
 
 class PythonEngineer(BaseAgent):
@@ -19,6 +28,36 @@ class PythonEngineer(BaseAgent):
     - name (str): The name of the agent.
     - system_prompt (str): The system prompt message.
     """
-    def __init__(self, name="PythonEngineer", **kwargs):
-        self.system_message = SYSTEM_PROMPT
-        super().__init__(name=name, system_prompt=SYSTEM_PROMPT, **kwargs)
+    def __init__(self, name: str | None = None, system_message: str | None = None, **kwargs):
+        if name is None:
+            name = "PythonEngineer"
+        if system_message is None:
+            system_message = SYSTEM_PROMPT
+        super().__init__(name=name, system_message=system_message, **kwargs)
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description='python Engineer agent')
+    parser.add_argument(
+        '--system-prompt',
+        type=str,
+        help='the system prompt message passed to the python engineeer')
+    args = parser.parse_args()
+    prompt = args.system_prompt  if args.system_prompt else SYSTEM_PROMPT
+
+    CHAT_SERVICE = ChatService(
+        settings.CONFIG_LIST,
+        assistants=[
+            PythonEngineer(system_message=prompt),
+            UserAgent(
+                name="Executor",
+                system_message =
+                    "Executor. Execute the code written by the engineer and report the result.",
+                human_input_mode="NEVER",
+                code_execution_config={"last_n_messages": 3, "work_dir": "agent_workplace"}
+            )
+        ],
+        user_proxy=UserAgent()
+    )
+    print(f"Prompt: {SYSTEM_PROMPT} \n")
+    message = input("Enter a message to send to the Python Engineer: ")
+    CHAT_SERVICE.initiate_chat(message)

@@ -1,68 +1,51 @@
 """
 This module contains the main function to initiate a chat with the assistant.
 """
+# pylint: disable=wrong-import-position
 
-# add project root to path to allow imports
 import sys
+import argparse
 from pathlib import Path
-from IPython.core.interactiveshell import InteractiveShell
+
 sys.path.append(str(Path(__file__).resolve().parents[2]))
-
-from settings import (
-    CONFIG_LIST,
-)
-from townhall.services.planner_service import PlannerService
-from townhall.services.function_service import FunctionService
+import settings
 from townhall.services.chat_service import ChatService
+from townhall.agents.user_agent import UserAgent
+from townhall.agents.base_agent import BaseAgent
 
+SYSTEM_PROMPT = """
+Planner. Suggest a plan. Revise the plan based on feedback from User and your peers, until User approval.
+The plan may involve an Engineer who can write code and a Scientist who doesn't write code.
+Explain the plan first. Be clear which step is performed by your peers, and which step is performed by which peer.
+"""
 
-PLANNER_SERVICE = PlannerService(CONFIG_LIST)
-FUNCTION_SERVICE = FunctionService()
-CHAT_SERVICE = ChatService(
-    CONFIG_LIST, FUNCTION_SERVICE.openai_functions_list)
-
-def exec_python(cell):
+class Planner(BaseAgent):
     """
-    Executes a Python code cell using IPython and returns the log of the execution.
+    A class representing a Planner agent.
 
-    Args:
-        cell (str): The Python code cell to execute.
-
-    Returns:
-        str: The log of the execution, including any output or errors.
+    Attributes:
+    - name (str): The name of the agent.
+    - system_prompt (str): The system prompt message.
     """
-    shell = InteractiveShell.instance()
-    result = shell.run_cell(cell)
-    log = str(result.result)
-    if result.error_before_exec is not None:
-        log += f"\n{result.error_before_exec}"
-    if result.error_in_exec is not None:
-        log += f"\n{result.error_in_exec}"
-    return log
 
-
-def exec_sh(script):
-    """
-    Executes a shell script using the user proxy.
-
-    Args:
-        script (str): The shell script to execute.
-
-    Returns:
-        The result of the shell script execution.
-    """
-    return CHAT_SERVICE.user_proxy.execute_code_blocks([("sh", script)])
-
-
+    def __init__(self, name: str | None = None, system_message: str | None = None, **kwargs):
+        if name is None:
+            name = "Planner"
+        if system_message is None:
+            system_message = SYSTEM_PROMPT
+        super().__init__(name=name, system_message=system_message, **kwargs)
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description='Planner agent')
+    parser.add_argument(
+        '--system-prompt', type=str, help='the system prompt message passed to the planner')
+    args = parser.parse_args()
+    prompt = args.system_prompt  if args.system_prompt else SYSTEM_PROMPT
 
-    CHAT_SERVICE.user_proxy.register_function(
-        function_map={
-            "python": exec_python,
-            "sh": exec_sh,
-        }
-    )
-
-    message = input("Enter a message to send to the assistant: ")
+    CHAT_SERVICE = ChatService(
+        settings.CONFIG_LIST, assistants=[
+            Planner(system_message=prompt)
+        ], user_proxy=UserAgent())
+    print(f"Planner System Prompt: {SYSTEM_PROMPT} \n")
+    message = input("Enter a message to send to the Planner: ")
     CHAT_SERVICE.initiate_chat(message)

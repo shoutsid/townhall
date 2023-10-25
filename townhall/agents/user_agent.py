@@ -22,8 +22,10 @@ class UserAgent(UserProxyAgent):
       get_human_input(prompt: str) -> str: Blocks until a message is available, then returns it.
     """
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    def __init__(self, name: str | None = None, **kwargs):
+        if name is None:
+            name = "User"
+        super().__init__(name=name, **kwargs)
         self.current_message = None
         self.message_event = threading.Event()
 
