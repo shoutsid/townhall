@@ -28,7 +28,7 @@ class PythonEngineer(BaseAgent):
     - name (str): The name of the agent.
     - system_prompt (str): The system prompt message.
     """
-    def __init__(self, name: str | None = None, system_message: str | None = None, **kwargs):
+    def __init__(self, name: str  = None, system_message: str = None, **kwargs):
         if name is None:
             name = "PythonEngineer"
         if system_message is None:

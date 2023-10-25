@@ -33,7 +33,7 @@ class ProductManager(BaseAgent):
     - name (str): The name of the agent.
     - system_prompt (str): The system prompt message.
     """
-    def __init__(self, name: str | None = None, system_message: None | str = None, **kwargs):
+    def __init__(self, name: str = None, system_message: str = None, **kwargs):
         if name is None:
             name = "ProductManager"
         if system_message is None:

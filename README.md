@@ -39,6 +39,7 @@ Before you begin, ensure you have met the following requirements:
 
 - Python 3.10 or higher
 - pip package manager
+- sqlite3
 
 ## 🛠️ Installation
 

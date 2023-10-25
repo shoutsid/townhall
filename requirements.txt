@@ -2,11 +2,9 @@ pytest
 pytest-asyncio
 pytest-mock
 pyautogen==0.1.13
-pyautogen[retrievechat]==0.1.13
 matplotlib
 scikit-learn
 tensorboard
-streamlit
 ipython
 
 # llama tinygrad integration requirements
@@ -26,3 +24,12 @@ tiktoken
 #   to fix it https://learn.microsoft.com/en-us/windows/wsl/connect-usb
 librosa
 pyaudio
+
+# You would normally install this, but this will bring
+# over torch and other dependencies that we don't want
+# Instead we are managing the requirements ourselves.
+# pyautogen[retrievechat]==0.1.13
+# tiktoken
+# sentence_transformers - BAD introduces torch
+# pypdf
+chromadb

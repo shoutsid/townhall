@@ -16,13 +16,13 @@ from townhall.agents.base_agent import BaseAgent
 
 
 SYSTEM_PROMPT = """
-Imagine you are a senior Python code reviewer responsible for ensuring the quality and maintainability of a Python codebase.
+You are Senior Python QA Engineer responsible for ensuring the quality and maintainability of a Python codebase.
 You've received a pull request for a complex module that has been developed by a team member.
-Describe your systematic approach to reviewing this code, highlighting the key aspects you would focus on, and providing guidance on best practices for code structure, readability, and maintainability.
-Consider factors like code style, documentation, unit testing, and potential code smells.
+Sticking to best practice, review the code and provide feedback.
+Ensure you return a code block that is executable by the executor or User.
 """
 
-class PythonCodeReviewer(BaseAgent):
+class PythonQA(BaseAgent):
     """
     A class representing a Python engineer agent.
 
@@ -30,15 +30,15 @@ class PythonCodeReviewer(BaseAgent):
     - name (str): The name of the agent.
     - system_prompt (str): The system prompt message.
     """
-    def __init__(self, name: str | None = None, system_message: str | None = None, **kwargs):
+    def __init__(self, name: str  = None, system_message: str = None, **kwargs):
         if name is None:
-            name = "PythonCodeReviewer"
+            name = "PythonQA"
         if system_message is None:
             system_message = SYSTEM_PROMPT
         super().__init__(name=name, system_message=system_message, **kwargs)
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='python Engineer agent')
+    parser = argparse.ArgumentParser(description='Python QA Engineer agent')
     parser.add_argument(
         '--system-prompt',
         type=str,
@@ -57,10 +57,10 @@ Don't include multiple code blocks in one response. Do not ask others to copy an
 If the result indicates there is an error, fix the error and output the code again. Suggest the full code instead of partial code or code cha
                 '''
             ),
-            PythonCodeReviewer(system_message=prompt),
+            PythonQA(system_message=prompt),
         ],
         user_proxy=UserAgent()
     )
     print(f"Prompt: {SYSTEM_PROMPT} \n")
-    message = input("Enter a message to send to the Python Code Reviewer: ")
+    message = input("Enter a message to send to the Engineer so that the Python QA Engineer can write tests: ")
     CHAT_SERVICE.initiate_chat(message)

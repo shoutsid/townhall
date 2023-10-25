@@ -22,9 +22,9 @@ class ChatService:
 
     def __init__(
             self,
-            config_list=None,
-            assistants: List | None = None,
-            user_proxy: UserAgent | None = None
+            config_list: dict = None,
+            assistants: List = None,
+            user_proxy: UserAgent = None
     ):
         if config_list is None:
             config_list = CONFIG_LIST
