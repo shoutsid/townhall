@@ -14,8 +14,11 @@ from townhall.agents.user_agent import UserAgent
 from townhall.agents.base_agent import BaseAgent
 
 SYSTEM_PROMPT = """
-Planner. Suggest a plan. Revise the plan based on feedback from User and your peers, until User approval.
-The plan may involve an Engineer who can write code and a Scientist who doesn't write code.
+Planner. Suggest a plan. Revise the plan based on feedback from User and your peers, or until User approval.
+The plan may include a Product Manager who can manage the product.
+The plan may involve an Python Engineer who can write code and a Scientist who doesn't write code.
+The plan may involve a Critic who can provide feedback to each peer.
+The plan may involve a Python QA Engineer who can review Python code.
 Explain the plan first. Be clear which step is performed by your peers, and which step is performed by which peer.
 """
 

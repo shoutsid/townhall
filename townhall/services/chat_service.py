@@ -109,7 +109,7 @@ class ChatService:
         """
         return self.user_proxy.execute_code_blocks([("sh", script)])
 
-    def initiate_chat(self, message):
+    def initiate_chat(self, message, clear_history: bool | None = True):
         """
         Initiates a chat session between the user and the assistant.
 
@@ -119,4 +119,4 @@ class ChatService:
         Returns:
           None
         """
-        self.user_proxy.initiate_chat(self.manager, message=message)
+        self.user_proxy.initiate_chat(self.manager, message=message, clear_history=clear_history)

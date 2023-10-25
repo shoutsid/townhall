@@ -33,3 +33,5 @@ pyaudio
 # sentence_transformers - BAD introduces torch
 # pypdf
 chromadb
+
+llama_index
