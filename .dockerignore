@@ -13,8 +13,8 @@ dist/
 townhall.egg-info/
 logs/
 
-app/models/llama/weights/LLaMa/**
-!app/models/llama/weights/LLaMa/pull_llama.sh
+townhall/models/llama/weights/LLaMa/**
+townhall/models/whisper/weights/**
 
-app/models/whisper/weights/
-!app/models/whisper/weights/.keep
+!pull_llama.sh
+!.keep
