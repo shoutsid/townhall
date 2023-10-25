@@ -68,14 +68,13 @@ The easiest way to get setup on windows is to start playing is click below to us
 
 ## 🌐 Usage
 
-### Planner
+### Agents
 
-To start the planner that can execute shell scripts and run python,
-run the following command:
+Each agent can be run independently. To start an product_manager agent for example, run the following commands:
 
 ```bash
 export OPENAI_API_KEY=<your-api-key>
-python3 townhall/models/planner.py
+python3 townhall/agents/product_manager.py
 ```
 
 ### LLaMa Integration
