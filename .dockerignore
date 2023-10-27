@@ -18,3 +18,4 @@ townhall/models/whisper/weights/**
 
 !pull_llama.sh
 !.keep
+tmp/

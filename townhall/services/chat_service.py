@@ -45,6 +45,8 @@ class ChatService:
                     }
                 )
             ]
+        else:
+            self.assistants = assistants
 
         if user_proxy is None:
             self.user_proxy = UserAgent(
@@ -60,7 +62,8 @@ class ChatService:
         self.messages: List = []
 
         # Setup group chat and manager
-        self.chat = GroupChat(agents=[user_proxy, *assistants], messages=self.messages, max_round=50)
+        self.chat = GroupChat(
+            agents=[user_proxy, *self.assistants], messages=self.messages, max_round=50)
         self.manager = GroupChatManager(groupchat=self.chat, llm_config=LLM_CONFIG)
 
     def setup_functions(self):
@@ -119,4 +122,11 @@ class ChatService:
         Returns:
           None
         """
+        if len(self.assistants) == 0:
+            raise ValueError("No assistant agent is available.")
+
+        if len(self.assistants) == 1:
+            return self.user_proxy.initiate_chat(
+                self.assistants[0], message=message, clear_history=clear_history)
+
         self.user_proxy.initiate_chat(self.manager, message=message, clear_history=clear_history)
