@@ -7,8 +7,6 @@ name: Submodule Updates
 on:
   push:
     branches-ignore: [main]
-  schedule:
-    - cron: '38 8 * * 2'
 
 ###############
 # Set the Job #
