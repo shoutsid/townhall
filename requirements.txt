@@ -1,7 +1,7 @@
 pytest
 pytest-asyncio
 pytest-mock
-pyautogen==0.1.14
+pyautogen==0.2.0
 matplotlib
 scikit-learn
 tensorboard
